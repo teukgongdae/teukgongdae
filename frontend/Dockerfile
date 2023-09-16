@@ -8,6 +8,7 @@ RUN apt-get install npm -y
 
 WORKDIR /app
 
+ADD package-lock.json .
 ADD package.json .
 
 RUN npm install
