@@ -1,6 +1,9 @@
 ## ROOT
 
 .DS_Store
+
+## TERRAFORM
+
 terraform/.env
 
 # FRONTEND
@@ -22,3 +25,8 @@ terraform/.env
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+
+## MYSQL
+
+/mysql/mysql_data*
+/mysql/.env
