@@ -1,32 +1,26 @@
-# FROM golang:latest
+FROM ubuntu:22.04
 
-# WORKDIR /app
+USER root
 
-# COPY go.mod .
-# COPY go.sum .
+WORKDIR /usr/local
 
-# RUN go mod download
+RUN apt-get update && apt install curl -y
 
-# COPY . .
+RUN curl -O -L "https://go.dev/dl/go1.21.1.linux-amd64.tar.gz"
 
-# RUN go build ./cmd/main.go
-
-# EXPOSE 8080
-
-# CMD [ "./main" ]
-
-
-
-FROM golang:alpine3.18
+RUN tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz
 
 WORKDIR /app
+
+ENV PATH=$PATH:/usr/local/go/bin
+ENV GOPATH /usr/local/go
 
 COPY ./go.mod ./
 COPY ./go.sum ./
 
-RUN go mod download
+RUN ["/bin/bash", "-c", "go mod download"]
 
-RUN go install -mod=mod github.com/githubnemo/CompileDaemon
+RUN ["/bin/bash", "-c", "go install -mod=mod github.com/githubnemo/CompileDaemon"]
 
 COPY . .
 
