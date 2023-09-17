@@ -35,11 +35,46 @@ services:
     ports:
       - "8080:8080"
 
-  # java:
+  # space:
   #   build:
   #     dockerfile: Dockerfile   
-  #     context: ./java
-  #   volumes:
-  #     - ./java:/app
+  #     context: ./space
   #   ports:
   #     - "8081:8081"
+
+  # member:
+  #   build:
+  #     dockerfile: Dockerfile   
+  #     context: ./member
+  #   ports:
+  #     - "8080:8080
+
+  # mysql-space:
+  #   build:
+  #     dockerfile: Dockerfile.space
+  #     context: ./mysql
+  #   restart: no
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - ./mysql/space_data:/var/lib/mysql
+  #     - ./mysql/scripts/space.sql:/docker-entrypoint-initdb.d/
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${SPACE_DB_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${SPACE_DB_NAME}
+  #     TZ: Asia/Seoul
+
+  # mysql-member:
+  #   build:
+  #     dockerfile: Dockerfile.member
+  #     context: ./mysql
+  #   restart: no
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - ./mysql/member_data:/var/lib/mysql
+  #     - ./mysql/scripts/member.sql:/docker-entrypoint-initdb.d/
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MEMBER_DB_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${MEMBER_DB_NAME}
+  #     TZ: Asia/Seoul
