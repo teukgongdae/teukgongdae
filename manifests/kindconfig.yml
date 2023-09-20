@@ -1,0 +1,23 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 30000
+    hostPort: 80
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  - containerPort: 30001
+    hostPort: 1111
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  - containerPort: 30002
+    hostPort: 2222
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+
+
+
+# 1. sed 등의 문자열 변환 커맨드는 파일이 없어서 사용 불가
+# 2. 먼저 지웠다가 다시 생성하려했지만 파드명에 랜덤스트링이 붙어있어서 자동화 불가
+# 3. istio 자체를 처음부터 yaml파일로 설치하기로 결정
