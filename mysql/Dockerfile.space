@@ -1,5 +1,0 @@
-FROM mysql:8.1
-
-COPY ./my.cnf ./etc/mysql/conf.d/my.cnf
-
-COPY ./scripts/space.sql /docker-entrypoint-initdb.d/

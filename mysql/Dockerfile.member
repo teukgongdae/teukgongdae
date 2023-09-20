@@ -1,5 +1,42 @@
-FROM mysql:8.1
+FROM ubuntu:22.04
 
-COPY ./my.cnf ./etc/mysql/conf.d/my.cnf
+USER root
 
-COPY ./scripts/member.sql /docker-entrypoint-initdb.d/
+RUN apt-get update
+
+RUN apt-get install mysql-server -y
+
+COPY ./my.cnf ./etc/mysql/mysql.cnf
+
+COPY ./scripts/member.sql /docker-entrypoint-initdb.d/member.sql
+
+RUN apt install systemctl -y
+
+COPY ./member-config.sh /
+
+CMD [ "sh", "./member-config.sh" ]
+
+# WORKDIR /docker-entrypoint-initdb.d
+
+
+
+
+# RUN mysql_secure_installation
+
+# ENV MEMBER_DB_ROOT_PASSWORD=$MEMBER_DB_ROOT_PASSWORD
+
+# RUN MEMBER_DB_ROOT_PASSWORD
+
+
+# RUN apt install ufw -y
+
+# RUN ufw allow mysql
+
+# RUN systemctl start mysql
+
+# RUN /usr/bin/mysql -u root -p
+
+# ENV MEMBER_DB_ROOT_PASSWORD=$MEMBER_DB_ROOT_PASSWORD
+
+# RUN SET PASSWORD FOR 'root'@'localhost' = PASSWORD(MEMBER_DB_ROOT_PASSWORD)
+
