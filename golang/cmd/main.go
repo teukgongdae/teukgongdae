@@ -1,74 +1,89 @@
-// DB Name : GATHER
-// DB User : root
-// DB Password : whtmdgus56
-
-// Table Name : GATHER
-// Table Column : id INT, userId INT, title VARCHAR(255), content VARCHAR(255), store VARCHAR(255), targetMoney INT, status INT
-
-// INITIAL DB RECORD : id = 1, userId = 1000, title = "HELLO", content = "WORLD", store = "STORE", targetMoney = 10000, status = 200
-
-// POST Request from GO to JAVA
-// path : /hello
-// content-type : application/json
-// payload : {"message" : "Hello"}
-// expect to response 200 status
 package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
+	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	fmt.Println("HELLO WORLD")
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"*"}
+	config.AllowMethods = []string{"GET", "POST", "DELETE", "PUT"}
+	config.AllowHeaders = []string{"Content-type"}
+	config.AllowCredentials = true
 
-	db, _ := sql.Open("mysql", "root:whtmdgus56@tcp(mysql)/GATHER")
+	eg := gin.Default()
 
-	_, err1 := db.Exec("INSERT INTO GATHER (id, userId, title, content, store, targetMoney, status) VALUES (1, 1000, 'HELLO', 'WORLD', 'STORE', 10000, 200)")
+	eg.Use(cors.New(config))
+
+	eg.GET("/api/hello", returnGetHandler)
+	eg.POST("/api/hello", returnPostHandler)
+
+	db, _ := sql.Open("mysql", "root:tgd_member@tcp(mysql-member)/memberdb")
+
+	r, err1 := db.Query("SELECT id, age FROM member")
 
 	if err1 != nil {
-		fmt.Println("[GOLANG] INSERTING DB INITIAL DATA ERROR : ", err1)
+		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA ERROR : ", err1)
 	} else {
-		fmt.Println("[GOLANG] INSERTING DB INITIAL DATA SUCCESS")
+		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA SUCCESS")
 	}
 
 	temp := struct {
-		ID           int
-		USERID       int
-		TITLE        string
-		CONTENT      string
-		STORE        string
-		TARGET_MONEY int
-		STATUS       int
+		ID  int
+		AGE int
+	}{}
+	temps := []struct {
+		ID  int
+		AGE int
 	}{}
 
-	r, err2 := db.Query("SELECT * FROM GATHER")
-	if err2 != nil {
-		fmt.Println("[GOLANG] GETTING DB INITIAL DATA ERROR : ", err1)
-	} else {
-		fmt.Println("[GOLANG] GETTING DB INITIAL DATA SUCCESS")
-	}
-
 	for r.Next() {
-		r.Scan(&temp.ID, &temp.USERID, &temp.TITLE, &temp.CONTENT, &temp.STORE, &temp.TARGET_MONEY, &temp.STATUS)
-		fmt.Println("[GOLANG] INITIAL DATA IS THIS : ", temp)
+		r.Scan(&temp.ID, &temp.AGE)
+		temps = append(temps, temp)
 	}
+	fmt.Println("[GOLANG] DB DATAS ARE THIS : ", temps)
 
-	// data := map[string]string{"message": "Hello"}
-
-	// marshaledData, _ := json.Marshal(data)
-
-	// response, _ := http.Post("http://java:8888/hello", "application/json", bytes.NewBuffer(marshaledData))
-
-	// if response.StatusCode != 200 {
-	// 	fmt.Println("[GOLANG] RESPONSE FROM JAVA IS NOT 200 : STATUS ", response.StatusCode)
-	// } else {
-	// 	fmt.Println("[GOLANG] RESPONSE FROM JAVA IS SUCCESSFUL")
-	// }
-
-	eg := gin.Default()
 	eg.Run(":8080")
+}
+
+func returnGetHandler(c *gin.Context) {
+	data := struct {
+		TEXT string `json:"java"`
+	}{
+		"spring",
+	}
+	fmt.Println(c.Request.RemoteAddr)
+	fmt.Println(c.Request.RequestURI)
+	fmt.Println(c.Request.URL)
+	fmt.Println(c.Request.URL.Host)
+
+	marshaledData, _ := json.Marshal(data)
+	c.Writer.Write(marshaledData)
+}
+
+func returnPostHandler(c *gin.Context) {
+	recieveData := struct {
+		TEXT string `json:"ask"`
+	}{}
+
+	c.ShouldBindJSON(recieveData)
+
+	if recieveData.TEXT == "HELLO" {
+		sendData := struct {
+			TEXT string `json:"answer"`
+		}{
+			"WORLD",
+		}
+		marshaledData, _ := json.Marshal(sendData)
+		c.Writer.Write(marshaledData)
+	} else {
+		c.Writer.WriteHeader(http.StatusBadRequest)
+	}
 }

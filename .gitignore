@@ -28,5 +28,12 @@ terraform/.env
 
 ## MYSQL
 
-/mysql/mysql_data*
+/mysql/datas/member_data*
 .env
+
+## TEMP
+
+test.md
+docs.md
+Dockerfile.java
+build.sh

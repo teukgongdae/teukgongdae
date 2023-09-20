@@ -2,33 +2,33 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: frontend
-  name: dep-frontend
+    app: golang
+  name: dep-golang
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: golang
   template:
     metadata:
       labels:
-        app: frontend
+        app: golang
     spec:
       containers:
-      - name: frontend
-        image: frontend:tgd
-        # image: achoistic98/tgd-frontend:latest
+      - name: golang
+        image: golang:tgd
+        # image: achoistic98/tgd-golang:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-frontend
+  name: svc-golang
 spec:
   selector:
-    app: frontend
+    app: golang
   type: ClusterIP
   ports:
-    - port: 3030
+    - port: 8080
