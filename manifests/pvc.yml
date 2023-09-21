@@ -26,3 +26,17 @@ spec:
   storageClassName: ""
   volumeName: pv-mysql-member
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-golang
+  namespace: default
+spec:
+  resources:
+    requests:
+      storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: pv-golang
+---

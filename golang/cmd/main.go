@@ -11,6 +11,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+var db *sql.DB
+
 func main() {
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"*"}
@@ -25,8 +27,12 @@ func main() {
 	eg.GET("/api/hello", returnGetHandler)
 	eg.POST("/api/hello", returnPostHandler)
 
-	db, _ := sql.Open("mysql", "root:tgd_member@tcp(svc-mysql-member)/memberdb")
+	db, _ = sql.Open("mysql", "root:1234@tcp(svc-mysql-member)/memberdb")
 
+	eg.Run(":8080")
+}
+
+func returnGetHandler(c *gin.Context) {
 	r, err1 := db.Query("SELECT id, age FROM member")
 
 	if err1 != nil {
@@ -36,12 +42,12 @@ func main() {
 	}
 
 	temp := struct {
-		ID  int
-		AGE int
+		ID  string
+		AGE string
 	}{}
 	temps := []struct {
-		ID  int
-		AGE int
+		ID  string
+		AGE string
 	}{}
 
 	for r.Next() {
@@ -50,19 +56,11 @@ func main() {
 	}
 	fmt.Println("[GOLANG] DB DATAS ARE THIS : ", temps)
 
-	eg.Run(":8080")
-}
-
-func returnGetHandler(c *gin.Context) {
 	data := struct {
 		TEXT string `json:"java"`
 	}{
-		"spring",
+		"first DB Stored DATA - (ID, AGE) : " + temps[0].ID + ", " + temps[0].AGE,
 	}
-	fmt.Println(c.Request.RemoteAddr)
-	fmt.Println(c.Request.RequestURI)
-	fmt.Println(c.Request.URL)
-	fmt.Println(c.Request.URL.Host)
 
 	marshaledData, _ := json.Marshal(data)
 	c.Writer.Write(marshaledData)

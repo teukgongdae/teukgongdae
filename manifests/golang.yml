@@ -21,6 +21,13 @@ spec:
         # imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/cmd
+          name: pvc-golang
+      volumes:
+        - name: pvc-golang
+          persistentVolumeClaim:
+            claimName: pvc-golang
 ---
 apiVersion: v1
 kind: Service

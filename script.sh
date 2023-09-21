@@ -17,3 +17,29 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 kubectl apply -f ./manifests/istiosystem.yml
 
 kubectl label namespace default istio-injection=enabled
+
+
+# object deployments
+
+cd frontend
+docker build -t frontend:tgd .
+
+cd ../golang
+docker build -t golang:tgd .
+
+cd ../mysql
+docker build -t mysql-member:tgd -f Dockerfile.member .
+
+kind load docker-image frontend:tgd
+kind load docker-image golang:tgd
+kind load docker-image mysql-member:tgd
+
+cd ../manifests
+
+kubectl apply -f vs-istiosystem.yml
+kubectl apply -f vs-default.yml
+kubectl apply -f pv.yml
+kubectl apply -f pvc.yml
+kubectl apply -f frontend.yml
+kubectl apply -f mysql-member.yml
+kubectl apply -f golang.yml

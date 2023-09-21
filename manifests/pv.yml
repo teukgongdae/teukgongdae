@@ -28,3 +28,18 @@ spec:
   hostPath:
     path: /volumes/mysql/member
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-golang
+  labels:
+    type: local
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /volumes/golang/cmd
+---
