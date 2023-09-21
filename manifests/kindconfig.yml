@@ -16,8 +16,10 @@ nodes:
     listenAddress: "127.0.0.1"
     protocol: TCP
   extraMounts:
-    - hostPath: ../mysql/volumes  # developer's local directory
-      containerPath: /foo # not deployed application's container, but container KIND cluster is spinning up in
+    - hostPath: ./mysql/data/member  # developer's local directory
+      containerPath: /volumes/mysql/data/member # not deployed application's container, but container KIND cluster is spinning up in
+    - hostPath: ./frontend/src
+      containerPath: /volumes/frontend/src
 
 # 1. string modifier like sed cannot be used in kubectl edit
 # 2. tried to remove istio-ingressgateway service and re-create, but the pods has random string name, so cannot make it as a script

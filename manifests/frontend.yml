@@ -18,9 +18,16 @@ spec:
       - name: frontend
         image: frontend:tgd
         # image: achoistic98/tgd-frontend:latest
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - mountPath: /app/src
+          name: pvc-frontend
+      volumes:
+        - name: pvc-frontend
+          persistentVolumeClaim:
+            claimName: pvc-frontend
 ---
 apiVersion: v1
 kind: Service
@@ -31,4 +38,4 @@ spec:
     app: frontend
   type: ClusterIP
   ports:
-    - port: 3030
+    - port: 3000

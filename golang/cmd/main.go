@@ -25,7 +25,7 @@ func main() {
 	eg.GET("/api/hello", returnGetHandler)
 	eg.POST("/api/hello", returnPostHandler)
 
-	db, _ := sql.Open("mysql", "root:tgd_member@tcp(mysql-member)/memberdb")
+	db, _ := sql.Open("mysql", "root:tgd_member@tcp(svc-mysql-member)/memberdb")
 
 	r, err1 := db.Query("SELECT id, age FROM member")
 

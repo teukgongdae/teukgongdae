@@ -25,9 +25,17 @@ spec:
   http:
   - match:
     - uri:
+        prefix: /api
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: svc-golang
+  - match:
+    - uri:
         prefix: /
     route:
     - destination:
         port:
-          number: 3030 # service port = 3000, container port = 3030 because of grafana port
+          number: 3000 # service port = 3000, container port = 3030 because of grafana port
         host: svc-frontend

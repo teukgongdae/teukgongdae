@@ -6,6 +6,9 @@ systemctl start mysql
 
 mysql < member.sql
 
-mysql -u root
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY '${MEMBER_DB_ROOT_PASSWORD}';
+
+# mysql -u root
+
+## + DB root password configuration
+## + if create other user, need to block root user not to access

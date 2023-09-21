@@ -18,7 +18,7 @@ spec:
       - name: golang
         image: golang:tgd
         # image: achoistic98/tgd-golang:latest
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
         ports:
         - containerPort: 8080
 ---

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dep-mysql-member
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: dep-mysql-member
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: dep-mysql-member
-          image: mysql-member:latest
+          image: mysql-member:tgd
           # image: achoistic98/tgd-mysql-member:latest
           ports:
             - containerPort: 3306
@@ -24,7 +24,7 @@ spec:
       volumes:
         - name: database-volume
           hostPath:
-            path: /volumes
+            path: /foo # host is not developer's local env, host is inside of container KIND is spinning up in
 ---
 apiVersion: v1
 kind: Service
