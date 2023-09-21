@@ -13,3 +13,18 @@ spec:
   hostPath:
     path: /volumes/frontend/src
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-member
+  labels:
+    type: local
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /volumes/mysql/member
+---

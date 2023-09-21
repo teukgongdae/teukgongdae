@@ -19,12 +19,12 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - name: database-volume
-              mountPath: /var/lib/mysql
+          - mountPath: /var/lib/mysql
+            name: pvc-mysql-member
       volumes:
-        - name: database-volume
-          hostPath:
-            path: /foo # host is not developer's local env, host is inside of container KIND is spinning up in
+        - name: pvc-mysql-member
+          persistentVolumeClaim:
+            claimName: pvc-mysql-member
 ---
 apiVersion: v1
 kind: Service

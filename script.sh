@@ -17,4 +17,3 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 kubectl apply -f ./manifests/istiosystem.yml
 
 kubectl label namespace default istio-injection=enabled
-

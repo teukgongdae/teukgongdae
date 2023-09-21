@@ -28,12 +28,9 @@ terraform/.env
 
 ## MYSQL
 
-/mysql/datas/member_data*
-.env
+/mysql/datas/member*
 
 ## TEMP
 
-test.md
 docs.md
 Dockerfile.java
-build.sh

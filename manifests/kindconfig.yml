@@ -16,8 +16,8 @@ nodes:
     listenAddress: "127.0.0.1"
     protocol: TCP
   extraMounts:
-    - hostPath: ./mysql/data/member  # developer's local directory
-      containerPath: /volumes/mysql/data/member # not deployed application's container, but container KIND cluster is spinning up in
+    - hostPath: ./mysql/datas/member  # developer's local directory
+      containerPath: /volumes/mysql/member # not deployed application's container, but container KIND cluster is spinning up in
     - hostPath: ./frontend/src
       containerPath: /volumes/frontend/src
 

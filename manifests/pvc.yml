@@ -12,3 +12,17 @@ spec:
   storageClassName: ""
   volumeName: pv-frontend
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-mysql-member
+  namespace: default
+spec:
+  resources:
+    requests:
+      storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: pv-mysql-member
+---

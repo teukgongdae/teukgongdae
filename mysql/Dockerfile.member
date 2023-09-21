@@ -1,45 +1,11 @@
-# FROM ubuntu:22.04
+FROM ubuntu/mysql:8.0-22.04_beta
 
-# USER root
+USER root
 
-# RUN apt-get update
+COPY ./my.cnf ./etc/mysql/my.cnf
 
-# RUN apt-get install mysql-server -y
+COPY ./scripts/member.sql /docker-entrypoint-initdb.d/member.sql
 
-# COPY ./my.cnf ./etc/mysql/mysql.cnf
-
-# COPY ./scripts/member.sql /docker-entrypoint-initdb.d/member.sql
-
-# RUN apt install systemctl -y
-
-# COPY ./member-config.sh /
-
-# WORKDIR /docker-entrypoint-initdb.d
-
-# # ENTRYPOINT [ "systemctl", "start", "mysql", "&&", "sh", "member-config.sh" ] 
-# ENTRYPOINT [ "systemctl", "start", "mysql" ]
-# CMD [ "sh", "/member-config.sh" ]
-
-
-# # CMD [ "sh", "" ]
-
-# FROM ubuntu/mysql:8.0-22.04_beta
-
-FROM ubuntu:trusty
-
-# Install packages: mysql adds a root user with no password
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && \
-  apt-get -yq install mysql-server && \
-  rm -rf /var/lib/apt/lists/*
-
-# Change mysql to listen on 0.0.0.0
-ADD my.cnf /etc/mysql/conf.d/my.cnf
-
-# setup our entry point
-ADD member-config.sh /member-config.sh
-RUN chmod 755 /*.sh
-ENTRYPOINT ["/member-config.sh"]
-
-EXPOSE 3306
-CMD ["systemct", "start", "mysql"]
+ENV MYSQL_ROOT_PASSWORD=1234
+ENV MYSQL_DATABASE=memberdb
+ENV MYSQL_ALLOW_EMPTY_PASSWORD=no
