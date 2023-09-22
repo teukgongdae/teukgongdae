@@ -22,6 +22,8 @@ nodes:
       containerPath: /volumes/mysql/member # not deployed application's container, but container KIND cluster is spinning up in
     - hostPath: ./golang/cmd
       containerPath: /volumes/golang/cmd
+    - hostPath: ./jenkins/volume
+      containerPath: /volumes/jenkins/volume
 
 # 1. string modifier like sed cannot be used in kubectl edit
 # 2. tried to remove istio-ingressgateway service and re-create, but the pods has random string name, so cannot make it as a script

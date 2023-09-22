@@ -40,3 +40,17 @@ spec:
   storageClassName: ""
   volumeName: pv-golang
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-jenkins
+  namespace: devops-system
+spec:
+  resources:
+    requests:
+      storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: pv-jenkins
+---

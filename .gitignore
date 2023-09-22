@@ -25,6 +25,7 @@ terraform/.env
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
+/frontend/.dockerignore
 
 ## MYSQL
 
@@ -33,3 +34,10 @@ terraform/.env
 ## TEMP
 
 Dockerfile.java
+
+## JENKINS
+
+
+/jenkins/volume/**
+!/jenkins/volume/jobs/
+!/jenkins/volume/nodes/

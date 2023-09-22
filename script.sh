@@ -3,6 +3,7 @@
 kind create cluster --config ./manifests/kindconfig.yml
 
 kubectl create namespace istio-system
+kubectl create namespace devops-system
 
 kubectl apply -f ./manifests/istioconfig.yml
 
@@ -43,3 +44,4 @@ kubectl apply -f pvc.yml
 kubectl apply -f frontend.yml
 kubectl apply -f mysql-member.yml
 kubectl apply -f golang.yml
+kubectl apply -f jenkins.yml
