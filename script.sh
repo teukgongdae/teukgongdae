@@ -22,6 +22,7 @@ kubectl apply -f ./manifests/istiosystem.yml
 
 kubectl label namespace default istio-injection=enabled
 
+sleep 10
 
 # object deployments
 
@@ -35,8 +36,13 @@ cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
 
 kind load docker-image frontend:tgd
+sleep 10
+
 kind load docker-image golang:tgd
+sleep 10
+
 kind load docker-image mysql-member:tgd
+sleep 10
 
 cd ../manifests
 
@@ -53,19 +59,16 @@ kubectl apply -f pvc.yml
 sleep 10
 
 kubectl apply -f frontend.yml
-sleep 10
+sleep 20
 
 kubectl apply -f mysql-member.yml
-sleep 10
+sleep 20
 
 kubectl apply -f jenkins.yml
-sleep 10
+sleep 20
 
 kubectl apply -f golang.yml
-sleep 10
-
-kubectl apply -n devops-system -f argocd1.yml
-sleep 10
+sleep 20
 
 # ArgoCD for PROD
 # kubectl apply -n devops-system -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
