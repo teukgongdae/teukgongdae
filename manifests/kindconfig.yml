@@ -11,10 +11,6 @@ nodes:
     hostPort: 1111
     listenAddress: "127.0.0.1"
     protocol: TCP
-  - containerPort: 30002
-    hostPort: 2222
-    listenAddress: "127.0.0.1"
-    protocol: TCP
   extraMounts:
     - hostPath: ./frontend/src
       containerPath: /volumes/frontend/src
