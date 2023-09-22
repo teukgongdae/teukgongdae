@@ -39,5 +39,5 @@ Dockerfile.java
 
 
 /jenkins/volume/**
-!/jenkins/volume/jobs/
-!/jenkins/volume/nodes/
+!/jenkins/volume/jobs**
+!/jenkins/volume/nodes**
