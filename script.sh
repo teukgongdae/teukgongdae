@@ -35,13 +35,13 @@ docker build -t golang:tgd .
 cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
 
+kind load docker-image mysql-member:tgd
+sleep 10
+
 kind load docker-image frontend:tgd
 sleep 10
 
 kind load docker-image golang:tgd
-sleep 10
-
-kind load docker-image mysql-member:tgd
 sleep 10
 
 cd ../manifests
