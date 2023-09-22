@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "script start time..."
+date
+
 kind create cluster --config ./manifests/kindconfig.yml
 
 kubectl create namespace istio-system
@@ -38,10 +41,34 @@ kind load docker-image mysql-member:tgd
 cd ../manifests
 
 kubectl apply -f vs-istiosystem.yml
+sleep 10
+
 kubectl apply -f vs-default.yml
+sleep 10
+
 kubectl apply -f pv.yml
+sleep 10
+
 kubectl apply -f pvc.yml
+sleep 10
+
 kubectl apply -f frontend.yml
+sleep 10
+
 kubectl apply -f mysql-member.yml
-kubectl apply -f golang.yml
+sleep 10
+
 kubectl apply -f jenkins.yml
+sleep 10
+
+kubectl apply -f golang.yml
+sleep 10
+
+kubectl apply -n devops-system -f argocd1.yml
+sleep 10
+
+# ArgoCD for PROD
+# kubectl apply -n devops-system -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+echo "script end time..."
+date

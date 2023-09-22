@@ -15,7 +15,7 @@ var db *sql.DB
 
 func main() {
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"*"}
+	config.AllowOrigins = []string{"http://svc-frontend"}
 	config.AllowMethods = []string{"GET", "POST", "DELETE", "PUT"}
 	config.AllowHeaders = []string{"Content-type"}
 	config.AllowCredentials = true
