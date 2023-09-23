@@ -8,7 +8,11 @@ nodes:
     listenAddress: "127.0.0.1"
     protocol: TCP
   - containerPort: 30001
-    hostPort: 1111
+    hostPort: 30001
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+  - containerPort: 30002
+    hostPort: 30002
     listenAddress: "127.0.0.1"
     protocol: TCP
   extraMounts:

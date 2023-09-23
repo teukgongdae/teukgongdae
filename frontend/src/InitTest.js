@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const Test = () => {
-const [data, setData] = useState("aaaa!!");
+const [data, setData] = useState("TESTING");
     useEffect(()=>{
         axios.get("http://localhost/api/hello")
         .then((response)=>{

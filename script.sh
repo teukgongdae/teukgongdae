@@ -5,73 +5,47 @@ date
 
 kind create cluster --config ./manifests/kindconfig.yml
 
+sleep 20
+
 kubectl create namespace istio-system
 kubectl create namespace devops-system
 
+kubectl apply -f ./manifests/istioconfig.yml # not use istioctl but manifest to configure ingress gateway service as NodePort
 
-
-kubectl apply -f ./manifests/istioconfig.yml
 
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/kiali.yaml 
-
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/grafana.yaml
-
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
-
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/jaeger.yaml
 
-kubectl label namespace default istio-injection=enabled
-
-sleep 10
-
-# object deployments
 
 cd frontend
 docker build -t frontend:tgd .
-
 cd ../golang
 docker build -t golang:tgd .
-
 cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
 
 kind load docker-image mysql-member:tgd
-sleep 10
-
 kind load docker-image frontend:tgd
-sleep 10
-
 kind load docker-image golang:tgd
-sleep 10
+
+kubectl label namespace default istio-injection=enabled
 
 cd ../manifests
 
 kubectl apply -f vs-istiosystem.yml
-sleep 10
-
 kubectl apply -f vs-default.yml
-sleep 10
-
 kubectl apply -f pv.yml
-sleep 10
-
 kubectl apply -f pvc.yml
-sleep 10
-
 kubectl apply -f frontend.yml
-sleep 20
-
 kubectl apply -f mysql-member.yml
-sleep 20
-
 kubectl apply -f jenkins.yml
-sleep 20
+kubectl apply -n devops-system -f argocd.yml # use manifest to configure NodePort for argoCD Web Dashboard
+
+sleep 60
 
 kubectl apply -f golang.yml
-sleep 20
-
-# ArgoCD for PROD
-# kubectl apply -n devops-system -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 echo "script end time..."
 date
