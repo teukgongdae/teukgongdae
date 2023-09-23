@@ -24,4 +24,4 @@ RUN ["/bin/bash", "-c", "go install -mod=mod github.com/githubnemo/CompileDaemon
 
 COPY . .
 
-ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="go build -o main ./cmd" -command="./main" -directory="./"
+ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="nice --10 go build -o main ./cmd" -command="./main" -directory="./"

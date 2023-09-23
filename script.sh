@@ -12,7 +12,6 @@ kubectl create namespace devops-system
 
 kubectl apply -f ./manifests/istioconfig.yml # not use istioctl but manifest to configure ingress gateway service as NodePort
 
-
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/kiali.yaml 
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/grafana.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
@@ -41,11 +40,11 @@ kubectl apply -f pvc.yml
 kubectl apply -f frontend.yml
 kubectl apply -f mysql-member.yml
 kubectl apply -f jenkins.yml
+kubectl apply -f golang.yml
 kubectl apply -n devops-system -f argocd.yml # use manifest to configure NodePort for argoCD Web Dashboard
 
-sleep 60
-
-kubectl apply -f golang.yml
+# FOR ARGOCD INITIAL PASSWORD
+# kubectl -n devops-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d 
 
 echo "script end time..."
 date

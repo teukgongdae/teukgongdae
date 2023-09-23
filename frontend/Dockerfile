@@ -1,10 +1,12 @@
-FROM ubuntu:22.04 AS build
+# FROM ubuntu:22.04 AS build
 
-USER root
+# USER root
 
-RUN apt-get update
+# RUN apt-get update
 
-RUN apt-get install npm -y
+# RUN apt-get install npm -y
+
+FROM node:16-alpine
 
 WORKDIR /app
 
