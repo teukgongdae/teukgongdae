@@ -58,3 +58,18 @@ spec:
   hostPath:
     path: /volumes/jenkins/volume
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-member
+  labels:
+    type: local
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /volumes/member/src
+---

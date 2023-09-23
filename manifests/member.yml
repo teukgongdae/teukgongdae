@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: member
+  name: dep-member
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: member
+  template:
+    metadata:
+      labels:
+        app: member
+    spec:
+      containers:
+      - name: member
+        image: member:tgd
+        # image: achoistic98/tgd-member:latest
+        # imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /app/src
+          name: pvc-member
+      volumes:
+        - name: pvc-member
+          persistentVolumeClaim:
+            claimName: pvc-member
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-member
+spec:
+  selector:
+    app: member
+  type: ClusterIP
+  ports:
+    - port: 8000

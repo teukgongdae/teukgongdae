@@ -24,8 +24,8 @@ func main() {
 
 	eg.Use(cors.New(config))
 
-	eg.GET("/api/hello", returnGetHandler)
-	eg.POST("/api/hello", returnPostHandler)
+	eg.GET("/golang/hello", returnGetHandler)
+	eg.POST("/golang/hello", returnPostHandler)
 
 	db, _ = sql.Open("mysql", "root:1234@tcp(svc-mysql-member)/memberdb")
 
