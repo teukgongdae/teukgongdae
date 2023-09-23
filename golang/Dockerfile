@@ -14,6 +14,7 @@ WORKDIR /app
 
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH /usr/local/go
+ENV GOMAXPROCS=5
 
 COPY ./go.mod ./
 COPY ./go.sum ./
@@ -24,4 +25,4 @@ RUN ["/bin/bash", "-c", "go install -mod=mod github.com/githubnemo/CompileDaemon
 
 COPY . .
 
-ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="nice --10 go build -o main ./cmd" -command="./main" -directory="./"
+ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="go build -o main ./cmd" -command="./main" -directory="./"

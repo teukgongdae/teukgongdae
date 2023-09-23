@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS golangdb;
+
+CREATE DATABASE golangdb;
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
+USE golangdb;
+
+CREATE TABLE `golang` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `name` VARCHAR(20) NOT NULL DEFAULT "noName");
+
+INSERT INTO golang (name) VALUES
+    ("CHOIGONYOK"),
+    ("WHITEM4RK");

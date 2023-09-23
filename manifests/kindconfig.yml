@@ -20,6 +20,8 @@ nodes:
       containerPath: /volumes/frontend/src
     - hostPath: ./mysql/datas/member  # developer's local directory
       containerPath: /volumes/mysql/member # not deployed application's container, but container KIND cluster is spinning up in
+    - hostPath: ./mysql/datas/golang
+      containerPath: /volumes/mysql/golang      
     - hostPath: ./golang/cmd
       containerPath: /volumes/golang/cmd
     - hostPath: ./jenkins/volume

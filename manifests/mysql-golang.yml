@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-mysql-golang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dep-mysql-golang
+  template:
+    metadata:
+      labels:
+        app: dep-mysql-golang
+    spec:
+      containers:
+        - name: dep-mysql-golang
+          image: mysql-golang:tgd
+          # image: achoistic98/tgd-mysql-member:latest
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: pvc-mysql-golang
+      volumes:
+        - name: pvc-mysql-golang
+          persistentVolumeClaim:
+            claimName: pvc-mysql-golang
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql-golang
+spec:
+  selector:
+    app: dep-mysql-golang
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

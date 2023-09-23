@@ -14,6 +14,7 @@ import (
 var db *sql.DB
 
 func main() {
+
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"*"}
 	config.AllowMethods = []string{"GET", "POST", "DELETE", "PUT"}
@@ -24,16 +25,16 @@ func main() {
 
 	eg.Use(cors.New(config))
 
-	eg.GET("/golang/hello", returnGetHandler)
+	eg.GET("/golang", returnGetHandler)
 	eg.POST("/golang/hello", returnPostHandler)
 
-	db, _ = sql.Open("mysql", "root:1234@tcp(svc-mysql-member)/memberdb")
+	db, _ = sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/golangdb")
 
 	eg.Run(":8080")
 }
 
 func returnGetHandler(c *gin.Context) {
-	r, err1 := db.Query("SELECT id, age FROM member")
+	r, err1 := db.Query("SELECT id, name FROM golang")
 
 	if err1 != nil {
 		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA ERROR : ", err1)
@@ -42,16 +43,16 @@ func returnGetHandler(c *gin.Context) {
 	}
 
 	temp := struct {
-		ID  string
-		AGE string
+		ID   string
+		NAME string
 	}{}
 	temps := []struct {
-		ID  string
-		AGE string
+		ID   string
+		NAME string
 	}{}
 
 	for r.Next() {
-		r.Scan(&temp.ID, &temp.AGE)
+		r.Scan(&temp.ID, &temp.NAME)
 		temps = append(temps, temp)
 	}
 	fmt.Println("[GOLANG] DB DATAS ARE THIS : ", temps)
@@ -59,7 +60,7 @@ func returnGetHandler(c *gin.Context) {
 	data := struct {
 		TEXT string `json:"java"`
 	}{
-		"DB Stored DATA - (ID, AGE) : " + temps[0].ID + ", " + temps[0].AGE,
+		"GOLANGDB DATA - (ID, NAME) : (" + temps[0].ID + ", " + temps[1].ID + "), (" + temps[0].NAME + ", " + temps[1].NAME + ")",
 	}
 
 	marshaledData, _ := json.Marshal(data)
@@ -74,8 +75,6 @@ func returnPostHandler(c *gin.Context) {
 	fmt.Println("[GOLANG] RECIEVED FROM MEMBER!")
 	c.ShouldBindJSON(&recieveData)
 
-	fmt.Println("RECIEVED DATA : ", recieveData)
-	fmt.Println("RECIEVED DATA : ", recieveData)
 	fmt.Println("RECIEVED DATA : ", recieveData)
 
 	if recieveData.TEXT == "HELLO" {

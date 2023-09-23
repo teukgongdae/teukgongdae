@@ -30,13 +30,13 @@ terraform/.env
 ## MYSQL
 
 /mysql/datas/member*
+/mysql/datas/golang*
 
 ## TEMP
 
 Dockerfile.java
 
 ## JENKINS
-
 
 /jenkins/volume/**
 !/jenkins/volume/jobs**

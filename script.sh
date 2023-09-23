@@ -24,10 +24,12 @@ cd ../golang
 docker build -t golang:tgd .
 cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
+docker build -t mysql-golang:tgd -f Dockerfile.golang .
 cd ../member
 docker build -t member:tgd .
 
 kind load docker-image mysql-member:tgd
+kind load docker-image mysql-golang:tgd
 kind load docker-image frontend:tgd
 kind load docker-image golang:tgd
 kind load docker-image member:tgd
@@ -41,11 +43,10 @@ kubectl apply -f vs-default.yml
 kubectl apply -f pv.yml
 kubectl apply -f pvc.yml
 kubectl apply -f mysql-member.yml
+kubectl apply -f mysql-golang.yml
 kubectl apply -f frontend.yml
 kubectl apply -f jenkins.yml
 kubectl apply -f golang.yml
-sleep 60
-
 kubectl apply -f member.yml
 kubectl apply -n devops-system -f argocd.yml
 

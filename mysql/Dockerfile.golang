@@ -1,0 +1,11 @@
+FROM ubuntu/mysql:8.0-22.04_beta
+
+USER root
+
+COPY ./my.cnf ./etc/mysql/my.cnf
+
+COPY ./scripts/golang.sql /docker-entrypoint-initdb.d/golang.sql
+
+ENV MYSQL_ROOT_PASSWORD=5678
+ENV MYSQL_DATABASE=golangdb
+ENV MYSQL_ALLOW_EMPTY_PASSWORD=no

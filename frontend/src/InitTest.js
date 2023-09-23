@@ -2,16 +2,17 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const Test = () => {
-const [id, setID] = useState("ID IS NOT RECIEVED");
-const [age, setAGE] = useState("AGE IS NOT RECIEVED");
+const [memid, setMemID] = useState("ID FROM MEMBERDB IS NOT RECIEVED");
+const [memage, setMemAge] = useState("AGE FROM MEMBERDB IS NOT RECIEVED");
 
-const [eid, seteID] = useState("E ID IS NOT RECIEVED");
+const [goid, setGoID] = useState("ID FROM GOLANGDB IS NOT RECIEVED");
+const [goname, setGoName] = useState("NAME FROM GOLANGDB IS NOT RECIEVED");
 
     useEffect(()=>{
         axios.get("http://localhost/member")
         .then((response)=>{
-            setID(response.data.id);
-            setAGE(response.data.age);
+            setMemID(response.data.id);
+            setMemAge(response.data.age);
         })
         .catch((error)=> {
             console.log(error);
@@ -19,9 +20,10 @@ const [eid, seteID] = useState("E ID IS NOT RECIEVED");
     }, [])
 
     useEffect(()=>{
-        axios.get("http://localhost/golang/hello")
+        axios.get("http://localhost/golang")
         .then((response)=>{
-            seteID(response.data.java);
+            setGoID(response.data.java);
+            setGoName(response.data.age);
         })
         .catch((error)=> {
             console.log(error);
@@ -30,13 +32,16 @@ const [eid, seteID] = useState("E ID IS NOT RECIEVED");
 
     return <div>
         <div>
-            {id}
+            {memid}
         </div>
         <div>
-            {age}
+            {memage}
         </div>
         <div>
-            {eid}
+            {goid}
+        </div>
+        <div>
+            {goname}
         </div>
     </div>
 }
