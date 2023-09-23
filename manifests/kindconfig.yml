@@ -24,8 +24,6 @@ nodes:
       containerPath: /volumes/golang/cmd
     - hostPath: ./jenkins/volume
       containerPath: /volumes/jenkins/volume
-    - hostPath: ./wsl.conf
-      containerPath: /etc/wsl.conf
 
 # 1. string modifier like sed cannot be used in kubectl edit
 # 2. tried to remove istio-ingressgateway service and re-create, but the pods has random string name, so cannot make it as a script
