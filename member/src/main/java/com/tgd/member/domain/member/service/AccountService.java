@@ -1,12 +1,9 @@
 package com.tgd.member.domain.member.service;
 
 import com.tgd.member.domain.member.entity.Account;
-import com.tgd.member.domain.member.entity.Test;
 import com.tgd.member.domain.member.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 

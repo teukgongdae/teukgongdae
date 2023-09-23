@@ -1,10 +1,10 @@
 package com.tgd.member.domain.member.entity;
 
-public class Test {
+import lombok.Data;
 
-    private String ask;
+public class Ask {
 
-    public Test(String ask) {
+    public Ask(String ask) {
         this.ask = ask;
     }
 
@@ -15,4 +15,6 @@ public class Test {
     public void setAsk(String ask) {
         this.ask = ask;
     }
+
+    private String ask;
 }

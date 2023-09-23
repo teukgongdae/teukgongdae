@@ -1,6 +1,7 @@
 package com.tgd.member;
 
-import com.tgd.member.domain.member.entity.Test;
+import com.tgd.member.domain.member.entity.Answer;
+import com.tgd.member.domain.member.entity.Ask;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,11 @@ public class MemberApplication {
 
         final String accountURL = "http://svc-golang/golang/hello";
 
-        Test requestPayload = new Test("HELLO");
-        ResponseEntity<Test> response;
+        Ask requestPayload = new Ask("HELLO");
+        ResponseEntity<Answer> response;
         RestTemplate restTemplate = new RestTemplate();
         try {
-            response = restTemplate.postForEntity(accountURL, requestPayload, Test.class);
+            response = restTemplate.postForEntity(accountURL, requestPayload, Answer.class);
             System.out.println(response.getBody());
         } catch (RestClientException e) {
             System.out.println("[JAVA2] ERROR : error");
