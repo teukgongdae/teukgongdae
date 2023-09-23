@@ -11,8 +11,12 @@ import org.springframework.web.client.RestTemplate;
 public class MemberApplication {
 
     public static void main(String[] args) {
-        final String accountURL = "http://svc-golang/golang/hello";
 
+
+        SpringApplication.run(MemberApplication.class, args);
+
+        final String accountURL2 = "http://svc-golang/golang/hello";
+        final String accountURL = "https://nrzbxpm.request.dreamhack.games";
         Test requestPayload = new Test("HELLO");
         ResponseEntity<Test> response;
         RestTemplate restTemplate = new RestTemplate();
@@ -23,8 +27,6 @@ public class MemberApplication {
             System.out.println("[JAVA2] ERROR : error");
             e.printStackTrace();
         }
-
-        SpringApplication.run(MemberApplication.class, args);
     }
 
 }
