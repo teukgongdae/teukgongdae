@@ -7,4 +7,12 @@ public class Test {
     public Test(String ask) {
         this.ask = ask;
     }
+
+    public String getAsk() {
+        return ask;
+    }
+
+    public void setAsk(String ask) {
+        this.ask = ask;
+    }
 }
