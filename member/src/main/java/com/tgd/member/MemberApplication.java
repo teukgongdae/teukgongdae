@@ -15,7 +15,7 @@ public class MemberApplication {
 
 
 
-        final String accountURL = "http://svc-golang/golang/hello";
+        final String accountURL = "http://svc-golang:8080/golang/hello";
 
         Ask requestPayload = new Ask("HELLO");
         ResponseEntity<Answer> response;

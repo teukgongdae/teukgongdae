@@ -44,6 +44,8 @@ kubectl apply -f mysql-member.yml
 kubectl apply -f frontend.yml
 kubectl apply -f jenkins.yml
 kubectl apply -f golang.yml
+sleep 60
+
 kubectl apply -f member.yml
 kubectl apply -n devops-system -f argocd.yml
 

@@ -15,7 +15,7 @@ var db *sql.DB
 
 func main() {
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://svc-frontend"}
+	config.AllowOrigins = []string{"*"}
 	config.AllowMethods = []string{"GET", "POST", "DELETE", "PUT"}
 	config.AllowHeaders = []string{"Content-type"}
 	config.AllowCredentials = true
@@ -59,10 +59,11 @@ func returnGetHandler(c *gin.Context) {
 	data := struct {
 		TEXT string `json:"java"`
 	}{
-		"first DB Stored DATA - (ID, AGE) : " + temps[0].ID + ", " + temps[0].AGE,
+		"DB Stored DATA - (ID, AGE) : " + temps[0].ID + ", " + temps[0].AGE,
 	}
 
 	marshaledData, _ := json.Marshal(data)
+
 	c.Writer.Write(marshaledData)
 }
 
@@ -70,8 +71,12 @@ func returnPostHandler(c *gin.Context) {
 	recieveData := struct {
 		TEXT string `json:"ask"`
 	}{}
+	fmt.Println("[GOLANG] RECIEVED FROM MEMBER!")
+	c.ShouldBindJSON(&recieveData)
 
-	c.ShouldBindJSON(recieveData)
+	fmt.Println("RECIEVED DATA : ", recieveData)
+	fmt.Println("RECIEVED DATA : ", recieveData)
+	fmt.Println("RECIEVED DATA : ", recieveData)
 
 	if recieveData.TEXT == "HELLO" {
 		sendData := struct {

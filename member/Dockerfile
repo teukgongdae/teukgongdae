@@ -4,19 +4,19 @@ WORKDIR /apps
 
 USER root
 
-COPY build.gradle .
-COPY settings.gradle .
-COPY gradlew .
+COPY build.gradle /apps
+COPY settings.gradle /apps
+COPY gradle gradle
 
-# RUN gradle build -x test > /dev/null 2>&1
+RUN gradle build -x test --continue > /dev/null 2>&1 | true
 
-RUN ./gradlew clean build --exclude-task test
+COPY . /apps
 
-COPY . .
+RUN gradle build -x test
 
 FROM openjdk:17-buster
 
-WORKDIR /apps
+WORKDIR /app
 
 COPY --from=build /apps/build/libs/member-0.0.1-SNAPSHOT.jar .
 
