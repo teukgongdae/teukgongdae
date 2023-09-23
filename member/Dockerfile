@@ -1,23 +1,25 @@
-FROM gradle:7.4-jdk17-jammy AS builder
+FROM gradle:7.4-jdk17-jammy AS build
 
-WORKDIR /build
+WORKDIR /apps
 
 USER root
 
-COPY build.gradle settings.gradle /build/
+COPY build.gradle .
+COPY settings.gradle .
+COPY gradlew .
 
-RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
+# RUN gradle build -x test > /dev/null 2>&1
 
-COPY . /build
+RUN ./gradlew clean build --exclude-task test
 
-RUN gradle build -x test --parallel
+COPY . .
 
 FROM openjdk:17-buster
 
-WORKDIR /app
+WORKDIR /apps
 
-COPY --from=builder /build/build/libs/member-0.0.1-SNAPSHOT.jar .
+COPY --from=build /apps/build/libs/member-0.0.1-SNAPSHOT.jar .
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT [ "java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "-Dsun.net.inetaddr.ttl=0", "member-0.0.1-SNAPSHOT.jar" ]
