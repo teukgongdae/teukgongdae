@@ -1,4 +1,4 @@
-FROM --platform=window ubuntu:22.04
+FROM ubuntu:22.04
 
 USER root
 
