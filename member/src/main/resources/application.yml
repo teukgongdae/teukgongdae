@@ -2,6 +2,6 @@ spring:
   config:
     import: optional:configserver:http://13.125.81.209:8888
   application:
-    name: gather
+    name: member
   profiles:
     active: dev
