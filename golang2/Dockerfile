@@ -1,0 +1,28 @@
+FROM ubuntu:22.04
+
+USER root
+
+WORKDIR /usr/local
+
+RUN apt-get update && apt install curl -y
+
+RUN curl -O -L "https://go.dev/dl/go1.21.1.linux-amd64.tar.gz"
+
+RUN tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz
+
+WORKDIR /app
+
+ENV PATH=$PATH:/usr/local/go/bin
+ENV GOPATH /usr/local/go
+ENV GOMAXPROCS=5
+
+COPY ./go.mod ./
+COPY ./go.sum ./
+
+RUN ["/bin/bash", "-c", "go mod download"]
+
+RUN ["/bin/bash", "-c", "go install -mod=mod github.com/githubnemo/CompileDaemon"]
+
+COPY . .
+
+ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="go build -o main ./cmd" -command="./main" -directory="./"

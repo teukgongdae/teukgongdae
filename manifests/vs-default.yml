@@ -33,6 +33,14 @@ spec:
         host: svc-golang
   - match:
     - uri:
+        prefix: /golang2
+    route:
+    - destination:
+        port:
+          number: 8080
+        host: svc-golang2
+  - match:
+    - uri:
         prefix: /member
     route:
     - destination:

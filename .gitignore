@@ -41,3 +41,6 @@ Dockerfile.java
 /jenkins/volume/**
 !/jenkins/volume/jobs**
 !/jenkins/volume/nodes**
+
+## RABBITMQ
+/rabbitmq/rabbit@rabbitmqcluster-server-0.rabbitmqcluster-nodes.default

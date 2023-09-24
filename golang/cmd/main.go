@@ -9,6 +9,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 var db *sql.DB
@@ -29,6 +30,66 @@ func main() {
 	eg.POST("/golang/hello", returnPostHandler)
 
 	db, _ = sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/golangdb")
+
+	conn, err := amqp.Dial("amqp://guest:guest@rabbitmqcluster:5672/")
+	if err != nil {
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+	}
+	defer conn.Close()
+
+	ch, err := conn.Channel()
+	if err != nil {
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+	}
+	defer ch.Close()
+
+	q, err := ch.QueueDeclare(
+		"hello", // name
+		false,   // durable
+		false,   // delete when unused
+		false,   // exclusive
+		false,   // no-wait
+		nil,     // arguments
+	)
+	if err != nil {
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+		fmt.Println(err.Error())
+	}
+
+	go func() {
+		for {
+			msgs, err := ch.Consume(
+				q.Name, // queue
+				"",     // consumer
+				true,   // auto-ack
+				false,  // exclusive
+				false,  // no-local
+				false,  // no-wait
+				nil,    // args
+			)
+			if err != nil {
+				fmt.Println(err.Error())
+				fmt.Println(err.Error())
+				fmt.Println(err.Error())
+			}
+
+			var forever chan struct{}
+
+			go func() {
+				for d := range msgs {
+					fmt.Printf("Received a message: %s", d.Body)
+				}
+			}()
+
+			fmt.Printf(" [*] Waiting for messages. To exit press CTRL+C")
+			<-forever
+		}
+	}()
 
 	eg.Run(":8080")
 }

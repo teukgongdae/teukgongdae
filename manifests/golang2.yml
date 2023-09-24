@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: golang2
+  name: dep-golang2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: golang2
+  template:
+    metadata:
+      labels:
+        app: golang2
+    spec:
+      containers:
+      - name: golang2
+        image: golang2:tgd
+        # image: achoistic98/tgd-golang:latest
+        # imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /app/cmd
+          name: pvc-golang2
+      volumes:
+        - name: pvc-golang2
+          persistentVolumeClaim:
+            claimName: pvc-golang2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-golang2
+spec:
+  selector:
+    app: golang2
+  type: ClusterIP
+  ports:
+    - port: 8080

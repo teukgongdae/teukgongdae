@@ -22,6 +22,8 @@ cd frontend
 docker build -t frontend:tgd .
 cd ../golang
 docker build -t golang:tgd .
+cd ../golang2
+docker build -t golang2:tgd .
 cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
 docker build -t mysql-golang:tgd -f Dockerfile.golang .
@@ -32,23 +34,31 @@ kind load docker-image mysql-member:tgd
 kind load docker-image mysql-golang:tgd
 kind load docker-image frontend:tgd
 kind load docker-image golang:tgd
+kind load docker-image golang2:tgd
 kind load docker-image member:tgd
 
 kubectl label namespace default istio-injection=enabled
 
 cd ../manifests
 
-kubectl apply -f vs-istiosystem.yml
-kubectl apply -f vs-default.yml
 kubectl apply -f pv.yml
 kubectl apply -f pvc.yml
+
+kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
+kubectl apply -f rabbitmq.yml
+
 kubectl apply -f mysql-member.yml
 kubectl apply -f mysql-golang.yml
-kubectl apply -f frontend.yml
-kubectl apply -f jenkins.yml
-kubectl apply -f golang.yml
-kubectl apply -f member.yml
+
 kubectl apply -n devops-system -f argocd.yml
+kubectl apply -f jenkins.yml
+
+kubectl apply -f vs-istiosystem.yml
+kubectl apply -f vs-default.yml
+kubectl apply -f frontend.yml
+kubectl apply -f golang.yml
+kubectl apply -f golang2.yml
+kubectl apply -f member.yml
 
 # FOR ARGOCD INITIAL PASSWORD
 # kubectl -n devops-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d 

@@ -61,6 +61,21 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: pv-golang2
+  labels:
+    type: local
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /volumes/golang2/cmd
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: pv-jenkins
   labels:
     type: local
@@ -87,4 +102,18 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: /volumes/member/src
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-rabbitmq
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: rabbitmq-storageclass
+  hostPath:
+    path: /volumes/rabbitmq
 ---

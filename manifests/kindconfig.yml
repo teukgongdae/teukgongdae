@@ -3,31 +3,39 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
   extraPortMappings:
-  - containerPort: 30000
+  - containerPort: 30000 # for Istio
     hostPort: 80
     listenAddress: "127.0.0.1"
     protocol: TCP
-  - containerPort: 30001
+  - containerPort: 30001 # for Jenkins
     hostPort: 30001
     listenAddress: "127.0.0.1"
     protocol: TCP
-  - containerPort: 30002
+  - containerPort: 30002 # for ArgoCD
     hostPort: 30002
     listenAddress: "127.0.0.1"
     protocol: TCP
+  - containerPort: 30003 # for RabbitMQ 
+    hostPort: 30003
+    listenAddress: "127.0.0.1"
+    protocol: TCP
   extraMounts:
-    - hostPath: ./frontend/src
-      containerPath: /volumes/frontend/src
     - hostPath: ./mysql/datas/member  # developer's local directory
       containerPath: /volumes/mysql/member # not deployed application's container, but container KIND cluster is spinning up in
     - hostPath: ./mysql/datas/golang
-      containerPath: /volumes/mysql/golang      
+      containerPath: /volumes/mysql/golang    
+    - hostPath: ./frontend/src
+      containerPath: /volumes/frontend/src
     - hostPath: ./golang/cmd
       containerPath: /volumes/golang/cmd
+    - hostPath: ./golang2/cmd
+      containerPath: /volumes/golang2/cmd
     - hostPath: ./jenkins/volume
       containerPath: /volumes/jenkins/volume
     - hostPath: ./member/src
       containerPath: /volumes/member/src
+    - hostPath: ./rabbitmq
+      containerPath: /volumes/rabbitmq
 
 # 1. string modifier like sed cannot be used in kubectl edit
 # 2. tried to remove istio-ingressgateway service and re-create, but the pods has random string name, so cannot make it as a script
