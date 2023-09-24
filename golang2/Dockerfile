@@ -14,7 +14,7 @@ WORKDIR /app
 
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH /usr/local/go
-ENV GOMAXPROCS=5
+ENV GOMAXPROCS=2
 
 COPY ./go.mod ./
 COPY ./go.sum ./

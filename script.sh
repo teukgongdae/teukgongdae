@@ -52,6 +52,7 @@ kubectl apply -f mysql-golang.yml
 
 kubectl apply -n devops-system -f argocd.yml
 kubectl apply -f jenkins.yml
+sleep 30
 
 kubectl apply -f vs-istiosystem.yml
 kubectl apply -f vs-default.yml
@@ -59,6 +60,7 @@ kubectl apply -f frontend.yml
 kubectl apply -f golang.yml
 kubectl apply -f golang2.yml
 kubectl apply -f member.yml
+sleep 30
 
 # FOR ARGOCD INITIAL PASSWORD
 # kubectl -n devops-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d 
