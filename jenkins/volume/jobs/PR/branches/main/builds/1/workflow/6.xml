@@ -1,0 +1,27 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<Tag plugin="workflow-support@865.v43e78cc44e0d">
+  <node class="cps.n.StepStartNode" plugin="workflow-cps@3791.va_c0338ea_b_59c">
+    <parentIds>
+      <string>5</string>
+    </parentIds>
+    <id>6</id>
+    <descriptorId>org.jenkinsci.plugins.workflow.support.steps.StageStep</descriptorId>
+  </node>
+  <actions>
+    <wf.a.BodyInvocationAction plugin="workflow-api@1281.vca_5fddb_3fceb_"/>
+    <wf.a.LabelAction plugin="workflow-api@1281.vca_5fddb_3fceb_">
+      <displayName>Declarative: Checkout SCM</displayName>
+    </wf.a.LabelAction>
+    <wf.a.TimingAction plugin="workflow-api@1281.vca_5fddb_3fceb_">
+      <startTime>1695621137124</startTime>
+    </wf.a.TimingAction>
+    <wf.a.TagsAction plugin="workflow-api@1281.vca_5fddb_3fceb_">
+      <tags>
+        <entry>
+          <string>SYNTHETIC_STAGE</string>
+          <string>PRE</string>
+        </entry>
+      </tags>
+    </wf.a.TagsAction>
+  </actions>
+</Tag>
