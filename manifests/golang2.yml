@@ -14,6 +14,7 @@ spec:
       labels:
         app: golang2
     spec:
+      serviceAccount: sa-golang2
       containers:
       - name: golang2
         image: golang2:tgd

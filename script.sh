@@ -16,6 +16,7 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/grafana.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/jaeger.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 
 
 cd frontend
@@ -43,6 +44,8 @@ cd ../manifests
 
 kubectl apply -f pv.yml
 kubectl apply -f pvc.yml
+kubectl apply -f sa.yml
+kubectl apply -f ap.yml
 
 kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
 kubectl apply -f rabbitmq.yml

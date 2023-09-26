@@ -23,6 +23,8 @@ func main() {
 	defer conn.Close()
 
 	fmt.Println("CONN IS CLOSED? : ", conn.IsClosed())
+	fmt.Println("CONN IS CLOSED? : ", conn.IsClosed())
+	fmt.Println("CONN IS CLOSED? : ", conn.IsClosed())
 
 	ch, err := conn.Channel()
 	if err != nil {
@@ -31,8 +33,6 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	defer ch.Close()
-
-	fmt.Println("CHANNEL IS CLOSED? : ", ch.IsClosed())
 
 	q, err := ch.QueueDeclare(
 		"hello", // name

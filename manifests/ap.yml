@@ -1,0 +1,196 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-nothing
+  namespace: default
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-frontend
+  namespace: default
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["istio-system", "kube-system"]
+    to:
+    - operation:
+        methods: ["GET"]
+        # notPaths: ["/kiali/*"] # in PROD
+        ports: ["3000"]
+---        
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-frontend
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+    to:
+    - operation:
+        methods: ["GET"]
+        # notPaths: ["/kiali/*"] # in PROD
+        ports: ["3000"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-golang
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: golang
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+    to:
+    - operation:
+        methods: ["GET"]
+        paths: ["/golang*"]
+        ports: ["8080"]
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/sa-member"]
+    to:
+    - operation:
+        methods: ["POST"]
+        paths: ["/golang*"]
+        ports: ["8080"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-member
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: member
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+    to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        paths: ["/member*"]
+        ports: ["8000"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-mysql-golang
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: mysql-golang
+  action: ALLOW
+  rules: 
+  - from:
+    - source:
+        principals: ["cluster.local/ns/default/sa/sa-golang"]
+    to:
+    - operation:
+        ports: ["3306"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-mysql-member
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: mysql-member
+  action: ALLOW
+  rules: 
+  - from:
+    - source:
+        principals: ["cluster.local/ns/default/sa/sa-member"]
+    to:
+    - operation:
+        ports: ["3306"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ap-rabbitmqcluster-server
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rabbitmqcluster
+  action: ALLOW
+  rules: 
+  - to:
+    - operation:
+        ports: ["5672"]
+---
+
+
+
+
+
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-nothing
+#   namespace: kube-system  
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-nothing
+#   namespace: istio-system
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-nothing
+#   namespace: cert-manager
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-nothing
+#   namespace: devops-system
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: allow-nothing
+#   namespace: rabbitmq-system
+# ---
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: httpbin
+#   namespace: default
+# spec:
+#   selector:
+#     matchLabels:
+#       app: golang
+#   action: ALLOW
+#   rules:
+#   - from:
+#     - source:
+#         principals: ["cluster.local/ns/default/sa/sa-frontend"]
+#   - to:
+#     - operation:
+#         methods: ["GET"]
+#         ports: ["8080"]
+# ---

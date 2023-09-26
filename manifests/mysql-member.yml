@@ -6,12 +6,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dep-mysql-member
+      app: mysql-member
   template:
     metadata:
       labels:
-        app: dep-mysql-member
+        app: mysql-member
     spec:
+      serviceAccount: sa-mysql-member
       containers:
         - name: dep-mysql-member
           image: mysql-member:tgd
@@ -32,7 +33,7 @@ metadata:
   name: svc-mysql-member
 spec:
   selector:
-    app: dep-mysql-member
+    app: mysql-member
   ports:
     - protocol: TCP
       port: 3306

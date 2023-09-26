@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-frontend
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-frontend-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-frontend
+type: kubernetes.io/service-account-token
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-golang
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-golang-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-golang
+type: kubernetes.io/service-account-token
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-golang2
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-golang2-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-golang2
+type: kubernetes.io/service-account-token
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-member
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-member-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-member
+type: kubernetes.io/service-account-token
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-mysql-member
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-mysql-member-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-mysql-member
+type: kubernetes.io/service-account-token
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-mysql-golang
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-mysql-golang-secret
+  annotations:
+    kubernetes.io/service-account.name: sa-mysql-golang
+type: kubernetes.io/service-account-token
+---

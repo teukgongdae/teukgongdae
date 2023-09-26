@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -21,7 +22,6 @@ func main() {
 	config.AllowMethods = []string{"GET", "POST", "DELETE", "PUT"}
 	config.AllowHeaders = []string{"Content-type"}
 	config.AllowCredentials = true
-
 	eg := gin.Default()
 
 	eg.Use(cors.New(config))
@@ -29,7 +29,19 @@ func main() {
 	eg.GET("/golang", returnGetHandler)
 	eg.POST("/golang/hello", returnPostHandler)
 
-	db, _ = sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/golangdb")
+	dbb, _ := sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/golangdb")
+	db = dbb
+	defer db.Close()
+
+	if db.Ping() != nil {
+		fmt.Println("PING FAIL")
+		fmt.Println("PING FAIL")
+		fmt.Println("PING FAIL")
+	} else {
+		fmt.Println("PING SUCCESS")
+		fmt.Println("PING SUCCESS")
+		fmt.Println("PING SUCCESS")
+	}
 
 	conn, err := amqp.Dial("amqp://guest:guest@rabbitmqcluster:5672/")
 	if err != nil {
@@ -38,6 +50,10 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	defer conn.Close()
+
+	fmt.Println("IS RABBITMQ CLOSE? : ", conn.IsClosed())
+	fmt.Println("IS RABBITMQ CLOSE? : ", conn.IsClosed())
+	fmt.Println("IS RABBITMQ CLOSE? : ", conn.IsClosed())
 
 	ch, err := conn.Channel()
 	if err != nil {
@@ -77,17 +93,9 @@ func main() {
 				fmt.Println(err.Error())
 				fmt.Println(err.Error())
 			}
-
-			var forever chan struct{}
-
-			go func() {
-				for d := range msgs {
-					fmt.Printf("Received a message: %s", d.Body)
-				}
-			}()
-
-			fmt.Printf(" [*] Waiting for messages. To exit press CTRL+C")
-			<-forever
+			for d := range msgs {
+				fmt.Printf("Received a message: %s", d.Body)
+			}
 		}
 	}()
 
@@ -96,19 +104,18 @@ func main() {
 
 func returnGetHandler(c *gin.Context) {
 	r, err1 := db.Query("SELECT id, name FROM golang")
-
 	if err1 != nil {
 		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA ERROR : ", err1)
 	} else {
 		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA SUCCESS")
 	}
-
+	defer r.Close()
 	temp := struct {
-		ID   string
+		ID   int
 		NAME string
 	}{}
 	temps := []struct {
-		ID   string
+		ID   int
 		NAME string
 	}{}
 
@@ -121,7 +128,7 @@ func returnGetHandler(c *gin.Context) {
 	data := struct {
 		TEXT string `json:"java"`
 	}{
-		"GOLANGDB DATA - (ID, NAME) : (" + temps[0].ID + ", " + temps[1].ID + "), (" + temps[0].NAME + ", " + temps[1].NAME + ")",
+		"GOLANGDB DATA - (ID, NAME) : (" + strconv.Itoa(temps[0].ID) + ", " + strconv.Itoa(temps[1].ID) + "), (" + temps[0].NAME + ", " + temps[1].NAME + ")",
 	}
 
 	marshaledData, _ := json.Marshal(data)
