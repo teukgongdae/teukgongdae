@@ -10498,5 +10498,12 @@ spec:
   selector:
     app: istiod
     istio: pilot
-
 ---
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: mtls-default
+  namespace: default
+spec:
+  mtls:
+    mode: STRICT

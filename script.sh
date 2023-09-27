@@ -44,8 +44,8 @@ cd ../manifests
 
 kubectl apply -f pv.yml
 kubectl apply -f pvc.yml
-kubectl apply -f sa.yml
-kubectl apply -f ap.yml
+kubectl apply -f security/sa.yml
+kubectl apply -f security/ap.yml
 
 kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
 kubectl apply -f rabbitmq.yml
@@ -56,8 +56,8 @@ kubectl apply -f mysql-golang.yml
 kubectl apply -n devops-system -f argocd.yml
 sleep 30
 
-kubectl apply -f vs-istiosystem.yml
-kubectl apply -f vs-default.yml
+kubectl apply -f security/vs-istiosystem.yml
+kubectl apply -f security/vs-default.yml
 kubectl apply -f frontend.yml
 kubectl apply -f golang.yml
 kubectl apply -f golang2.yml
