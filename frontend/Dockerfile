@@ -3,12 +3,16 @@ FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install npm -y
 
+# RUN apt-get install libcap2-bin -y
+
 WORKDIR /app
 
 ADD package.json .
 ADD package-lock.json .
 
 RUN npm install
+
+RUN chmod 777 /app/node_modules -R
 
 COPY . .
 
