@@ -1,6 +1,6 @@
 FROM ubuntu/mysql:8.0-22.04_beta
 
-USER root
+USER nobody
 
 COPY ./my.cnf ./etc/mysql/my.cnf
 

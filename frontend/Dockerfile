@@ -1,12 +1,7 @@
-# FOR MACOS
-
 FROM ubuntu:22.04
+# FROM ubuntu:22.04 AS build
 
-USER root
-
-RUN apt-get update
-
-RUN apt-get install npm -y
+RUN apt-get update && apt-get install npm -y
 
 WORKDIR /app
 
@@ -21,23 +16,10 @@ EXPOSE 3000
 
 ENV WDS_SOCKET_PORT=0
 
+USER nobody
+
 CMD [ "npm",  "run", "start" ]
-
-
-# FOR WINDOW
-
-# FROM node:16-alpine AS build
-
-# WORKDIR /app
-
-# COPY package.json .
-# COPY package-lock.json .
-
-# RUN npm install
-
-# COPY . .
-
-# RUN npm run build
+# CMD [ "npm",  "run", "build" ]
 
 # FROM nginx
 

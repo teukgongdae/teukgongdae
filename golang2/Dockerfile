@@ -1,7 +1,5 @@
 FROM ubuntu:22.04
 
-USER root
-
 WORKDIR /usr/local
 
 RUN apt-get update && apt install curl -y
@@ -24,5 +22,7 @@ RUN ["/bin/bash", "-c", "go mod download"]
 RUN ["/bin/bash", "-c", "go install -mod=mod github.com/githubnemo/CompileDaemon"]
 
 COPY . .
+
+USER nobody
 
 ENTRYPOINT CompileDaemon -polling -log-prefix=false -build="go build -o main ./cmd" -command="./main" -directory="./"
