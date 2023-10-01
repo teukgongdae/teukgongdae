@@ -2,7 +2,7 @@ FROM gradle:7.4-jdk17-jammy AS build
 
 WORKDIR /apps
 
-RUN chown member:member /apps -R
+RUN chown config:config /apps -R
 
 COPY build.gradle /apps
 COPY settings.gradle /apps
@@ -18,11 +18,11 @@ FROM openjdk:17-buster
 
 WORKDIR /app
 
-RUN useradd -ms /bin/bash member
+RUN useradd -ms /bin/bash config
 
 RUN chmod +x /app -R
 
-USER member
+USER config
 
 COPY --from=build /apps/build/libs/member-0.0.1-SNAPSHOT.jar .
 

@@ -44,3 +44,5 @@ Dockerfile.java
 
 ## RABBITMQ
 /rabbitmq/rabbit@rabbitmqcluster-server-0.rabbitmqcluster-nodes.default
+
+Dockerfile

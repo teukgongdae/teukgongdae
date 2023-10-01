@@ -1,0 +1,14 @@
+server:
+  port:
+
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: 
+          default-label: main
+          username: 
+          password: 
