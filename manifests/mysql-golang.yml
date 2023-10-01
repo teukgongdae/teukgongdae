@@ -13,6 +13,7 @@ spec:
         app: mysql-golang
     spec:
       serviceAccount: sa-mysql-golang
+      automountServiceAccountToken: false
       containers:
         - name: dep-mysql-golang
           image: mysql-golang:tgd

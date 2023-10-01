@@ -15,6 +15,7 @@ spec:
         app: member
     spec:
       serviceAccount: sa-member
+      automountServiceAccountToken: false
       restartPolicy: Always
       containers:
       - name: member

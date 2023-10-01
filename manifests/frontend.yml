@@ -15,6 +15,8 @@ spec:
         app: frontend
     spec:
       serviceAccount: sa-frontend
+      automountServiceAccountToken: false
+      # if it is true, token is in /var/run/secrets/kubernetes.io/serviceaccount path
       containers:
       - name: frontend
         image: frontend:tgd

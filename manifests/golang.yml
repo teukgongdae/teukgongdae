@@ -15,6 +15,7 @@ spec:
         app: golang
     spec:
       serviceAccount: sa-golang
+      automountServiceAccountToken: false
       containers:
       - name: golang
         image: golang:tgd
