@@ -15,11 +15,17 @@ spec:
         app: golang2
     spec:
       serviceAccount: sa-golang2
+      automountServiceAccountToken: false
       containers:
       - name: golang2
         image: golang2:tgd
         # image: achoistic98/tgd-golang:latest
         # imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - all
         ports:
         - containerPort: 8080
         volumeMounts:

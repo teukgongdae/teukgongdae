@@ -1,6 +1,10 @@
 FROM gradle:7.4-jdk17-jammy AS build
 
+RUN useradd -ms /bin/bash member
+
 WORKDIR /apps
+
+RUN chown member:member /apps -R
 
 COPY build.gradle /apps
 COPY settings.gradle /apps
@@ -16,10 +20,14 @@ FROM openjdk:17-buster
 
 WORKDIR /app
 
+RUN useradd -ms /bin/bash member
+
+USER member
+
+RUN chmod +x /app -R
+
 COPY --from=build /apps/build/libs/member-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8000
-
-USER nobody
 
 ENTRYPOINT [ "java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "-Dsun.net.inetaddr.ttl=0", "member-0.0.1-SNAPSHOT.jar" ]

@@ -13,10 +13,16 @@ spec:
         app: mysql-member
     spec:
       serviceAccount: sa-mysql-member
+      automountServiceAccountToken: false
       containers:
         - name: dep-mysql-member
           image: mysql-member:tgd
           # image: achoistic98/tgd-mysql-member:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
           ports:
             - containerPort: 3306
           volumeMounts:

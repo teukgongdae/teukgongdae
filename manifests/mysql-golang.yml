@@ -13,10 +13,16 @@ spec:
         app: mysql-golang
     spec:
       serviceAccount: sa-mysql-golang
+      automountServiceAccountToken: false
       containers:
         - name: dep-mysql-golang
           image: mysql-golang:tgd
           # image: achoistic98/tgd-mysql-member:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
           ports:
             - containerPort: 3306
           volumeMounts:

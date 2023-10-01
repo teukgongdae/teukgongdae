@@ -18,7 +18,6 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/jaeger.yaml
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 
-
 cd frontend
 docker build -t frontend:tgd .
 cd ../golang

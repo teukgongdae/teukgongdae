@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install npm -y
 
-# RUN apt-get install libcap2-bin -y
+RUN useradd -ms /bin/bash react
 
 WORKDIR /app
 
@@ -12,15 +12,15 @@ ADD package-lock.json .
 
 RUN npm install
 
-RUN chmod 777 /app/node_modules -R
-
 COPY . .
+
+RUN chown react:react /app -R
 
 EXPOSE 3000
 
 ENV WDS_SOCKET_PORT=0
 
-USER nobody
+USER react
 
 CMD [ "npm",  "run", "start" ]
 # CMD [ "npm",  "run", "build" ]

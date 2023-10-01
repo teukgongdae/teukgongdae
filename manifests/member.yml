@@ -15,12 +15,18 @@ spec:
         app: member
     spec:
       serviceAccount: sa-member
+      automountServiceAccountToken: false
       restartPolicy: Always
       containers:
       - name: member
         image: member:tgd
         # image: achoistic98/tgd-member:latest
         # imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false        
+          capabilities:
+            drop:
+              - all
         ports:
         - containerPort: 8000
         volumeMounts:
