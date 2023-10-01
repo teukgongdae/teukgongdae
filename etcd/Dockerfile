@@ -11,6 +11,10 @@ RUN rm -rf /tmp/etcd-download-test && mkdir -p /tmp/etcd-download-test
 RUN apt update
 RUN apt install curl -y
 RUN apt install systemctl -y
+RUN apt-get update
+# RUN apt-get install iproute2 -y
+
+# RUN ETCD_HOST_IP=$(ip addr show $INT_NAME | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 
 RUN curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
 RUN tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd-download-test --strip-components=1

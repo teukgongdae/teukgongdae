@@ -22,11 +22,11 @@ spec:
         image: member:tgd
         # image: achoistic98/tgd-member:latest
         # imagePullPolicy: Always
-        securityContext:
-          allowPrivilegeEscalation: false        
-          capabilities:
-            drop:
-              - all
+        # securityContext:
+        #   allowPrivilegeEscalation: false        
+        #   capabilities:
+        #     drop:
+        #       - all
         ports:
         - containerPort: 8000
         volumeMounts:

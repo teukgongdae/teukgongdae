@@ -2,8 +2,6 @@ FROM gradle:7.4-jdk17-jammy AS build
 
 WORKDIR /apps
 
-RUN chown member:member /apps -R
-
 COPY build.gradle /apps
 COPY settings.gradle /apps
 COPY gradle gradle
