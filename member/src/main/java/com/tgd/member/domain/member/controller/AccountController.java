@@ -25,7 +25,7 @@ public class AccountController {
     })
     @GetMapping("/member")
     public ResponseEntity<Optional<Account>> getFirstGather() {
-        return ResponseEntity.ok(accountService.getMemberById(2L));
+        return ResponseEntity.ok(Optional.ofNullable(accountService.getAccountById(2L)));
     }
 
 }

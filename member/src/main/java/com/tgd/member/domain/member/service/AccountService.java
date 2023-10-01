@@ -13,14 +13,14 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public Optional<Account> getMemberById(Long id) {
+    public Account getAccountById(Long id) {
         Optional<Account> account = accountRepository.findById(id);
         if (account.isEmpty()) {
             System.out.println("[JAVA3] ERROR 데이터 불러오기 실패");
             throw new IllegalArgumentException();
         } else {
             System.out.println("[JAVA3] SUCCESS");
-            return account;
+            return account.get();
         }
     }
 }

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "member")
 @EntityListeners(AuditingEntityListener.class)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +21,8 @@ public class Account {
     @Column(name = "age")
     private Integer age;
 
+    public Account(Long id, Integer age) {
+        this.id = id;
+        this.age = age;
+    }
 }
