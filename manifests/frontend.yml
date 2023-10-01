@@ -20,6 +20,11 @@ spec:
         image: frontend:tgd
         # image: achoistic98/tgd-frontend:latest
         # imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - all
         ports:
         - containerPort: 3000
         volumeMounts:

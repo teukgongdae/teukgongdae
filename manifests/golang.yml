@@ -20,6 +20,11 @@ spec:
         image: golang:tgd
         # image: achoistic98/tgd-golang:latest
         # imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: 
+              - all
         ports:
         - containerPort: 8080
         volumeMounts:
