@@ -20,7 +20,7 @@ Environment=ETCD_DATA_DIR=/var/lib/etcd
 
 ExecStart=/usr/local/bin/etcd --name node2 --initial-advertise-peer-urls http://111.0.0.3:2380 \
   --listen-peer-urls http://111.0.0.3:2380 \
-  --listen-client-urls http://111.0.0.3:2379,http://127.0.0.1:2379 \
+  --listen-client-urls http://111.0.0.3:2379 \
   --advertise-client-urls http://111.0.0.3:2379 \
   --initial-cluster-token etcd-cluster-1 \
   --initial-cluster node1=http://111.0.0.2:2380,node2=http://111.0.0.3:2380,node3=http://111.0.0.4:2380 \

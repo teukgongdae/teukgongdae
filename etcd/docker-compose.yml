@@ -40,5 +40,6 @@ services:
       - node3
     ports:
       - 2379:2379
+      - 9000:9000
     networks:
       - etcdnet
