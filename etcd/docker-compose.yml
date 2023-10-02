@@ -1,0 +1,44 @@
+version: '3'
+networks:
+  etcdnet:
+    ipam:
+      config:
+        - subnet: 111.0.0.0/16
+          gateway: 111.0.0.1
+services:
+  node1:
+    build:
+      dockerfile: Dockerfile
+      context: ./etcd1
+    networks:
+      etcdnet:
+        ipv4_address: 111.0.0.2
+
+  node2:
+    build:
+      dockerfile: Dockerfile
+      context: ./etcd2
+    networks:
+      etcdnet:
+        ipv4_address: 111.0.0.3
+      
+  node3:
+    build:
+      dockerfile: Dockerfile
+      context: ./etcd3
+    networks:
+      etcdnet:
+        ipv4_address: 111.0.0.4
+
+  haproxy:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - node1
+      - node2
+      - node3
+    ports:
+      - 2379:2379
+    networks:
+      - etcdnet
