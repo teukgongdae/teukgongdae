@@ -1,45 +1,48 @@
 version: '3'
 networks:
-  etcdnet:
+  etcd:
     ipam:
       config:
-        - subnet: 111.0.0.0/16
-          gateway: 111.0.0.1
+        - subnet: 111.0.0.0/24
 services:
   node1:
+    container_name: node1
     build:
       dockerfile: Dockerfile
       context: ./etcd1
     networks:
-      etcdnet:
+      etcd:
         ipv4_address: 111.0.0.2
 
   node2:
+    container_name: node2
     build:
       dockerfile: Dockerfile
       context: ./etcd2
     networks:
-      etcdnet:
+      etcd:
         ipv4_address: 111.0.0.3
       
   node3:
+    container_name: node3  
     build:
       dockerfile: Dockerfile
       context: ./etcd3
     networks:
-      etcdnet:
+      etcd:
         ipv4_address: 111.0.0.4
 
   haproxy:
+    container_name: haproxy
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ./haproxy
     depends_on:
       - node1
       - node2
       - node3
     ports:
-      - 2379:2379
-      - 9000:9000
+      - 2379:2379 # endpoint for K8S apiServer
+      - 9000:9000 # for Web UI Dashboard
     networks:
-      - etcdnet
+      - etcd

@@ -2,6 +2,17 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
+# for external HA etcd cluster
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    etcd:
+      external:
+        endpoints: 
+        - "http://host.docker.internal:2379"
+        caFile: ""
+        certFile: ""
+        keyFile: ""
   extraPortMappings:
   - containerPort: 30000 # for Istio
     hostPort: 80
