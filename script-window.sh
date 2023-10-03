@@ -27,7 +27,7 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 
 # build application container images
 cd frontend
-docker build -t frontend:tgd .
+docker build -t frontend:tgd -f Dockerfile.window .
 cd ../golang
 docker build -t golang:tgd .
 cd ../golang2
@@ -64,7 +64,7 @@ kubectl apply -n devops-system -f argocd.yml
 sleep 30
 kubectl apply -f security/vs-istiosystem.yml
 kubectl apply -f security/vs-default.yml
-kubectl apply -f frontend.yml
+kubectl apply -f frontend-window.yml
 kubectl apply -f golang.yml
 kubectl apply -f golang2.yml
 kubectl apply -f member.yml

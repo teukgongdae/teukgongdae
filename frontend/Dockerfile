@@ -23,12 +23,3 @@ ENV WDS_SOCKET_PORT=0
 USER react
 
 CMD [ "npm",  "run", "start" ]
-# CMD [ "npm",  "run", "build" ]
-
-# FROM nginx
-
-# EXPOSE 3000
-
-# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# COPY --from=build /app/build /usr/share/nginx/html
