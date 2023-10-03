@@ -23,4 +23,6 @@ COPY ./etcd.service /etc/systemd/system/etcd.service
 
 RUN systemctl stop etcd.service
 
+USER etcd
+
 ENTRYPOINT [ "systemctl", "start", "etcd.service" ]

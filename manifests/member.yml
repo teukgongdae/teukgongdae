@@ -30,7 +30,7 @@ spec:
         ports:
         - containerPort: 8000
         volumeMounts:
-        - mountPath: /app/src
+        - mountPath: /apps/src
           name: pvc-member
       volumes:
         - name: pvc-member
