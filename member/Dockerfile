@@ -1,6 +1,10 @@
 FROM gradle:7.4-jdk17-jammy AS build
 
+RUN apt update && apt install openjdk-17-jdk -y
+
 WORKDIR /apps
+
+RUN chmod +x /apps -R
 
 COPY build.gradle /apps
 COPY settings.gradle /apps
@@ -12,17 +16,11 @@ COPY . /apps
 
 RUN gradle build -x test
 
-FROM openjdk:17-buster
+# RUN useradd -ms /bin/bash member
 
-WORKDIR /app
+# USER member
 
-RUN useradd -ms /bin/bash member
-
-RUN chmod +x /app -R
-
-USER member
-
-COPY --from=build /apps/build/libs/member-0.0.1-SNAPSHOT.jar .
+WORKDIR /apps/build/libs
 
 EXPOSE 8000
 
