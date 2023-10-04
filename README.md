@@ -1,5 +1,3 @@
-<div>
-
 # 특공대🚀
 
 ### **_특별한 공간 대여 서비스_**
@@ -88,41 +86,17 @@ Development
       </div>
     </td>
     <td align=left>
-      <div>
-        KIND로 개발환경 로컬 쿠버네티스 클러스터 구축하기
+      <div>        
+        <a href="http://www.choigonyok.com/post/78">MSA Dev Environment for Project</a>
       </div>
       <div>
-        KIND에 Istio Ingress Gateway 배포하기
+        <a href="http://www.choigonyok.com/post/80">Golang High CPU Usage TroubleShooting</a>
       </div>
       <div>
-        Skaffold로 지속적 개발하기
+        <a href="http://www.choigonyok.com/post/82">Kubernetes Hardening Guide</a>
       </div>
       <div>
-        Golang 유닛, 통합, E2E 테스트
-      </div>
-      <div>
-        K8S NetworkPolicy & SecurityContext
-      </div>
-      <div>
-        젠킨스 클라우드 서버 및 쿠버네티스 CI/CD 파이프라인 구축
-      </div>
-      <div>
-        RabbitMQ 서버 쿠버네티스 클러스터에 구축하기
-      </div>
-      <div>
-        Docker Compose 서비스 디스커버리 오류 (ERR_NAME_NOT_RESOLVED)
-      </div>
-      <div>
-        프로젝트에 맞는 MSA 개발환경 선정하기
-      </div>
-      <div>
-        Golang High CPU Usage TroubleShooting
-      </div>
-      <div>
-        Kubernetes Hardening Guide
-      </div>
-      <div>
-        Config External HA etcd Cluster w/ HAProxy in KIND
+        <a href="http://www.choigonyok.com/post/84">Config External HA etcd Cluster w/ HAProxy in KIND</a>
       </div>
     </td>
   </tr>
@@ -146,5 +120,3 @@ Development
     </td>
   </tr>
 </table>
-
-</div>
