@@ -59,14 +59,15 @@ kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/do
 kubectl apply -f rabbitmq.yml
 kubectl apply -f mysql-member.yml
 kubectl apply -f mysql-golang.yml
-kubectl create namespace devops-system
-kubectl apply -n devops-system -f argocd.yml
+# kubectl create namespace devops-system
+# kubectl apply -n devops-system -f argocd.yml
 sleep 60
 kubectl apply -f security/vs-istiosystem.yml
 kubectl apply -f security/vs-default.yml
 kubectl apply -f frontend.yml
 kubectl apply -f golang.yml
 kubectl apply -f golang2.yml
+sleep 60
 kubectl apply -f member.yml
 sleep 30
 
