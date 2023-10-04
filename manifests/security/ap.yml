@@ -45,7 +45,7 @@ spec:
         ports: ["8080"]
   - from:
     - source:
-        principals: ["cluster.local/ns/istio-system/sa/sa-member"]
+        principals: ["cluster.local/ns/default/sa/sa-member"]
     to:
     - operation:
         methods: ["POST"]
