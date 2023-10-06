@@ -8,6 +8,12 @@
 
 <br/>
 
+## ⭐ Architecture
+
+![행배야아키텍처](https://github.com/teukgongdae/teukgongdae/assets/129271363/fade73dc-1186-442e-a41f-0e7985b65c2d)
+
+<br/>
+
 ## ⭐ Motivation
 
 -
