@@ -1,14 +1,12 @@
 import './App.css';
-import Test from './InitTest';
+import Home from './Home/Home';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          <Test/>
-        </p>
-      </header>
+      <body className="App-header">
+          <Home/>
+      </body>
     </div>
   );
 }
