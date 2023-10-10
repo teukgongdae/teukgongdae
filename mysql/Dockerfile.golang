@@ -4,8 +4,8 @@ USER nobody
 
 COPY ./my.cnf ./etc/mysql/my.cnf
 
-COPY ./scripts/golang.sql /docker-entrypoint-initdb.d/golang.sql
+COPY ./scripts/space.sql /docker-entrypoint-initdb.d/space.sql
 
 ENV MYSQL_ROOT_PASSWORD=5678
-ENV MYSQL_DATABASE=golangdb
+ENV MYSQL_DATABASE=spacedb
 ENV MYSQL_ALLOW_EMPTY_PASSWORD=no

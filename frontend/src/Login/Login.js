@@ -2,7 +2,7 @@ import Header from "../UI/Header";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import "./Login.css";
-import logo from "../Assets/t-logo-icon.png"
+import logo from "../Assets/logo.png"
 import kakaotalk from "../Assets/kakaotalk-icon.svg"
 import naver from "../Assets/naver-icon.svg"
 
@@ -10,9 +10,6 @@ const Login = () => {
 
     const [memid, setMemID] = useState("ID FROM MEMBERDB IS NOT RECIEVED");
     const [memage, setMemAge] = useState("AGE FROM MEMBERDB IS NOT RECIEVED");
-
-    const [goid, setGoID] = useState("ID FROM GOLANGDB IS NOT RECIEVED");
-    const [goname, setGoName] = useState("NAME FROM GOLANGDB IS NOT RECIEVED");
 
     useEffect(() => {
         axios.get("http://localhost/member")
@@ -25,30 +22,14 @@ const Login = () => {
             })
     }, [])
 
-    useEffect(() => {
-        axios.get("http://localhost/golang")
-            .then((response) => {
-                setGoID(response.data.java);
-                setGoName(response.data.age);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, [])
-
     return (
         <div className="page">
             <div>
                 <Header category="SIGN IN" />
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <div className="login">
                 <div className="login-container-logo">
-                    <img src={logo} alt="space list" className="login-logo" />
+                    <img src={logo} alt="logo" className="login-logo" />
                 </div>
                 <div className="login-buttons">
                     <div className="login-text-info">
@@ -66,13 +47,7 @@ const Login = () => {
                 </div>
                 <div>
                     {memage}
-                </div>
-                <div>
-                    {goid}
-                </div>
-                <div>
-                    {goname}
-                </div>
+                </div>                
             </div>
         </div>
     );

@@ -48,7 +48,7 @@ spec:
         principals: ["cluster.local/ns/default/sa/sa-member"]
     to:
     - operation:
-        methods: ["POST"]
+        methods: ["POST", "GET"]
         paths: ["/golang*"]
         ports: ["8080"]
 ---

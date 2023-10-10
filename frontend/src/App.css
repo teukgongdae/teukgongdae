@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.page {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 3000px;
+  flex-direction: column;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

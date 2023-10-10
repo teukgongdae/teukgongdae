@@ -2,8 +2,18 @@ import "./Header.css";
 import profileicon from "../Assets/profile-icon.png";
 import chaticon from "../Assets/chat-icon.png";
 import documentsicon from "../Assets/documents-icon.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
+    const navigator = useNavigate();
+
+    const spaceClickHandler = () => {
+        navigator("/space");
+    }
+    const  profileClickHandler = () => {
+        navigator("/");
+    }
+
     return (
         <div className="header-container">
             <div className="header">
@@ -33,9 +43,9 @@ const Header = (props) => {
                     </div>
                 </div>
                 <div className="header-container-icon">
-                    <img src={documentsicon} alt="space list" className="header-icon" />
+                    <img src={documentsicon} alt="space list" className="header-icon" onClick={spaceClickHandler}/>
                     <img src={chaticon} alt="chat list" className="header-icon" />
-                    <img src={profileicon} alt="my profile" className="header-icon" />
+                    <img src={profileicon} alt="my profile" className="header-icon" onClick={profileClickHandler}/>
                 </div>
             </div>
         </div>

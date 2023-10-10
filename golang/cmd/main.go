@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -26,10 +25,10 @@ func main() {
 
 	eg.Use(cors.New(config))
 
-	eg.GET("/golang", returnGetHandler)
+	eg.GET("/golang/spaces", spaceInfoHandler)
 	eg.POST("/golang/hello", returnPostHandler)
 
-	dbb, _ := sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/golangdb")
+	dbb, _ := sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/spacedb")
 	db = dbb
 	defer db.Close()
 
@@ -102,8 +101,11 @@ func main() {
 	eg.Run(":8080")
 }
 
-func returnGetHandler(c *gin.Context) {
-	r, err1 := db.Query("SELECT id, name FROM golang")
+func spaceInfoHandler(c *gin.Context) {
+
+	// INSERT INTO space (userName, title, tag1, tag2, tag3, price, isPeriodic, days, startTime, endTime) VALUES
+	// ("최윤석", "스타벅스", "카페", "개인공간", "낮에만사용", 1234, 1, 127, 1800, 2400 ),
+	r, err1 := db.Query("SELECT id, userName, title, tag1, tag2, tag3, price, isPeriodic, date, days, startTime, endTime, status FROM space")
 	if err1 != nil {
 		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA ERROR : ", err1)
 	} else {
@@ -111,27 +113,43 @@ func returnGetHandler(c *gin.Context) {
 	}
 	defer r.Close()
 	temp := struct {
-		ID   int
-		NAME string
+		ID          int
+		USER_NAME   string
+		TITLE       string
+		TAG1        string
+		TAG2        string
+		TAG3        string
+		PRICE       int
+		IS_PERIODIC int
+		DATE        string
+		DAYS        int
+		START_TIME  int
+		END_TIME    int
+		STATUS      int
 	}{}
 	temps := []struct {
-		ID   int
-		NAME string
+		ID          int
+		USER_NAME   string
+		TITLE       string
+		TAG1        string
+		TAG2        string
+		TAG3        string
+		PRICE       int
+		IS_PERIODIC int
+		DATE        string
+		DAYS        int
+		START_TIME  int
+		END_TIME    int
+		STATUS      int
 	}{}
 
 	for r.Next() {
-		r.Scan(&temp.ID, &temp.NAME)
+		r.Scan(&temp.ID, &temp.USER_NAME, &temp.TITLE, &temp.TAG1, &temp.TAG2, &temp.TAG3, &temp.PRICE, &temp.IS_PERIODIC, &temp.DATE, &temp.DAYS, &temp.START_TIME, &temp.END_TIME, &temp.STATUS)
 		temps = append(temps, temp)
 	}
 	fmt.Println("[GOLANG] DB DATAS ARE THIS : ", temps)
 
-	data := struct {
-		TEXT string `json:"java"`
-	}{
-		"GOLANGDB DATA - (ID, NAME) : (" + strconv.Itoa(temps[0].ID) + ", " + strconv.Itoa(temps[1].ID) + "), (" + temps[0].NAME + ", " + temps[1].NAME + ")",
-	}
-
-	marshaledData, _ := json.Marshal(data)
+	marshaledData, _ := json.Marshal(temps)
 
 	c.Writer.Write(marshaledData)
 }
