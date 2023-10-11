@@ -18,6 +18,7 @@
 
 .header {
     display: flex;
+    box-sizing: border-box;
     justify-content: space-between;
     align-items: center;
     width: 90%;
@@ -88,11 +89,11 @@
 
     .header-name {
         justify-content: start;
-        font-size: 20px;
+        font-size: 19px;
     }
     
     .header-name-upper {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .header-category {

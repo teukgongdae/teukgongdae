@@ -12,7 +12,6 @@ const Space = () => {
             .get("http://localhost/golang/spaces")
             .then((response) => {
                 setSpacesInfo(response.data);
-                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -32,9 +31,7 @@ const Space = () => {
                             {item.PRICE}원 / 시간
                         </div>
                     </div>
-                    <div>
                         <img src={imgicon} alt="empty img" className="space-card-image" />
-                    </div>
                     <div className="space-card-title">
                         {item.TITLE}
                     </div>

@@ -41,14 +41,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <div>
-                    {memid}
-                </div>
-                <div>
-                    {memage}
-                </div>                
-            </div>
         </div>
     );
 };

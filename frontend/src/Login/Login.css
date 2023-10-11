@@ -61,6 +61,13 @@
 }
 
 @media (max-width: 1100px) {
+    .login {
+        align-items: center;
+    }
+    .page {
+        height: auto;
+      }      
+
     .login-logo {
         width: 130px;
     }
@@ -79,9 +86,16 @@
     .login-icon-naver {
         width: 40px;
     }
+    .login-icon-kakaotalk:hover {
+        width: 40px;
+    }
+    
+    .login-icon-naver:hover {
+        width: 40px;
+    }
 
     .login-text-info {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .login-buttons {
