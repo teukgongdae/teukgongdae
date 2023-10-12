@@ -9886,6 +9886,7 @@ spec:
         prometheus.io/port: "15020"
         prometheus.io/scrape: "true"
         sidecar.istio.io/inject: "false"
+        kubernetes.io/ingress.class: "istio"
       labels:
         app: istio-ingressgateway
         chart: gateways

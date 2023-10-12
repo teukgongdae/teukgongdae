@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-mysql-golang
+  name: pv-mysql-space
   labels:
     type: local
 spec:
@@ -41,7 +41,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /volumes/mysql/golang
+    path: /volumes/mysql/space
 ---
 apiVersion: v1
 kind: PersistentVolume

@@ -11,7 +11,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "*" # Fix to VALID_DOMAIN in PROD
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -19,7 +19,7 @@ metadata:
   name: vs-default
 spec:
   hosts:
-  - "*"
+  - "*" # Fix to VALID_DOMAIN in PROD
   gateways:
   - gw-default
   http:

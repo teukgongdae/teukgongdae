@@ -1,0 +1,11 @@
+FROM ubuntu/mysql:8.0-22.04_beta
+
+USER nobody
+
+COPY ./my.cnf ./etc/mysql/my.cnf
+
+COPY ./scripts/space.sql /docker-entrypoint-initdb.d/space.sql
+
+ENV MYSQL_ROOT_PASSWORD=5678
+ENV MYSQL_DATABASE=spacedb
+ENV MYSQL_ALLOW_EMPTY_PASSWORD=no

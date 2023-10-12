@@ -23,7 +23,7 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samp
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/grafana.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/jaeger.yaml
-# kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.yaml
 
 # build application container images
 cd frontend
@@ -34,13 +34,13 @@ cd ../golang2
 docker build -t golang2:tgd .
 cd ../mysql
 docker build -t mysql-member:tgd -f Dockerfile.member .
-docker build -t mysql-golang:tgd -f Dockerfile.golang .
+docker build -t mysql-space:tgd -f Dockerfile.space .
 cd ../member
 docker build -t member:tgd .
 
 # load container images to KIND cluster
 kind load docker-image mysql-member:tgd
-kind load docker-image mysql-golang:tgd
+kind load docker-image mysql-space:tgd
 kind load docker-image frontend:tgd
 kind load docker-image golang:tgd
 kind load docker-image golang2:tgd
@@ -58,7 +58,7 @@ kubectl apply -f security/ap.yml
 kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
 kubectl apply -f rabbitmq.yml
 kubectl apply -f mysql-member.yml
-kubectl apply -f mysql-golang.yml
+kubectl apply -f mysql-space.yml
 # kubectl create namespace devops-system
 # kubectl apply -n devops-system -f argocd.yml
 sleep 60

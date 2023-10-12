@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-mysql-space
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-space
+  template:
+    metadata:
+      labels:
+        app: mysql-space
+    spec:
+      serviceAccount: sa-mysql-space
+      automountServiceAccountToken: false
+      containers:
+        - name: dep-mysql-space
+          image: mysql-space:tgd
+          # image: achoistic98/tgd-mysql-member:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: pvc-mysql-space
+      volumes:
+        - name: pvc-mysql-space
+          persistentVolumeClaim:
+            claimName: pvc-mysql-space
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql-space
+spec:
+  selector:
+    app: mysql-space
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

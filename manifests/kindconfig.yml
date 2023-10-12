@@ -33,8 +33,8 @@ nodes:
   extraMounts:
     - hostPath: ./mysql/datas/member  # developer's local directory
       containerPath: /volumes/mysql/member # not deployed application's container, but container KIND cluster is spinning up in
-    - hostPath: ./mysql/datas/golang
-      containerPath: /volumes/mysql/golang    
+    - hostPath: ./mysql/datas/space
+      containerPath: /volumes/mysql/space    
     - hostPath: ./frontend/src
       containerPath: /volumes/frontend/src
     - hostPath: ./golang/cmd

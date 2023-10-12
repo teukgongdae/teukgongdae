@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-mysql-golang
+  name: pvc-mysql-space
   namespace: default
 spec:
   resources:
@@ -38,7 +38,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: ""
-  volumeName: pv-mysql-golang
+  volumeName: pv-mysql-space
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -67,20 +67,6 @@ spec:
     - ReadWriteOnce
   storageClassName: ""
   volumeName: pv-golang2
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-jenkins
-  namespace: devops-system
-spec:
-  resources:
-    requests:
-      storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: ""
-  volumeName: pv-jenkins
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

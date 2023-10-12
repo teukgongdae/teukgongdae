@@ -75,12 +75,12 @@ spec:
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: ap-mysql-golang
+  name: ap-mysql-space
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: mysql-golang
+      app: mysql-space
   action: ALLOW
   rules: 
   - from:
