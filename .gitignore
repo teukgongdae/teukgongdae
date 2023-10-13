@@ -30,17 +30,15 @@ terraform/.env
 ## MYSQL
 
 /mysql/datas/member*
-/mysql/datas/golang*
+/mysql/datas/space*
 
 ## TEMP
 
 Dockerfile.java
 
-## JENKINS
+## TERRAFORM
+.terraform*
 
-/jenkins/volume/**
-!/jenkins/volume/jobs**
-!/jenkins/volume/nodes**
 
 ## RABBITMQ
 /rabbitmq/rabbit@rabbitmqcluster-server-0.rabbitmqcluster-nodes.default
