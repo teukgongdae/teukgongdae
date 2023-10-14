@@ -1,0 +1,67 @@
+.days-container {
+    display: flex;
+    gap: 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 30px;
+    align-items: center;
+}
+
+.days-red {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    background-color: red;
+    color: white;
+    justify-content: center;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.days-white {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    color: red;
+    justify-content: center;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.days-white:hover {
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.days-red:hover {
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.daysdate-date {
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-style: italic;
+}
