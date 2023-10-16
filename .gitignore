@@ -26,19 +26,15 @@ terraform/.env
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 /frontend/.dockerignore
+/frontend/.env
 
 ## MYSQL
 
 /mysql/datas/member*
 /mysql/datas/space*
 
-## TEMP
-
-Dockerfile.java
-
 ## TERRAFORM
 .terraform*
-
 
 ## RABBITMQ
 /rabbitmq/rabbit@rabbitmqcluster-server-0.rabbitmqcluster-nodes.default
