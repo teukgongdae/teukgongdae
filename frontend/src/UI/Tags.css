@@ -1,0 +1,71 @@
+.tags {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    align-items: flex-start;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.tags-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.tags-input {
+    display: flex;
+    border-radius: 15px;
+    border: 3px solid black;
+    width: 20rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 2%;
+    align-items: center;
+}
+
+.tags-input:focus {
+    border: 3px solid red;
+    outline: none;
+}
+
+.tags-button:hover {
+    color: red;
+    outline: none;
+}
+
+.tags-button {
+    display: flex;
+    border-radius: 15px;
+    border: none;
+    background-color: transparent;
+    width: 4rem;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    align-items: center;
+}
+
+.tags-tag {
+    display: flex;
+    font-size: 1.3rem;
+    width: auto;
+    font-weight: 800;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.519);
+    padding: 1%;
+    border-radius: 13px;
+}
+
+.tag-tagbox {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    font-weight: 600;
+    padding-top: 2%;
+}
