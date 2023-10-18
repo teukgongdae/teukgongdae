@@ -1,0 +1,9 @@
+.price-container-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-container-input-time {
+    display: flex;
+    padding-bottom: 5%;
+}
