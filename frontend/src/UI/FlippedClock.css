@@ -1,0 +1,18 @@
+.flippedClock {
+    display: flex;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    gap: 3px;
+}
+
+.flippedClock-time {
+    display: flex;
+    border: 2px solid black;
+    color: white;
+    border-radius: 8px;
+    padding: 1%;
+    width: 28px;
+    justify-content: center;
+    background-color: black;
+}
