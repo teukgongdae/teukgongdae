@@ -1,0 +1,116 @@
+.chat-container-temp{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.chat-container-input {
+    display: flex;
+    box-sizing: border-box;
+    width:100%;
+    height: 8%;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container-output {
+    display: flex;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    width:100%;
+    height: 92%;
+    flex-direction: column;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+}
+
+.chat-input {
+    display: flex;
+    width: 90%;
+    height: 60%;
+    font-size: 1.5rem;
+    outline: none;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.chat-input-icon {
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.chat-input-icon:hover {
+    background-color: gray;
+}
+
+.chat-peer-image-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.chat-my-image-name {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.chat-output-image-profile {
+    border-radius: 10px;
+    width: 3rem;
+    height: 3rem;
+}
+
+.chat-my-peer-chat {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 50%;
+    font-size: 1.3rem;
+    padding: 1%;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+.chat-my-container-chat {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.chat-peer-container-chat {
+    display: flex;
+    width: 100%;
+}
+
+.chat-peer-time {
+    display: flex;
+    font-size: 1.2rem;
+    color: gray;
+    padding-left: 1%;
+}
+.chat-my-time {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.2rem;
+    color: gray;
+    padding-left: 1%;
+}
+
+.chat-set {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
