@@ -1,0 +1,295 @@
+.spacewrite-container-tagbox {
+    display: flex;
+    width: auto;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.spacewrite-tag {
+    display: flex;
+    font-size: 1.5rem;
+    background-color: rgb(177, 177, 177);
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    border-radius: 15px;
+    gap: 6px;
+}
+
+.spacewrite-delete {
+    display: flex;
+    color: black;
+}
+
+.spacewrite-delete:hover {
+    cursor: pointer;
+    color: red;
+}
+
+
+
+.spacewrite-container-tags {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.spacewrite-container-isperiodic {
+    display: flex;
+    gap: 10px;
+}
+
+.spacewrite-isperiodic-nonclicked {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    color: red;
+    justify-content: center;
+    border-radius: 40px;
+    height: 3.5rem;
+    width: 5.3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.spacewrite-isperiodic-clicked {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    background-color: red;
+    color: white;
+    justify-content: center;
+    border-radius: 40px;
+    height: 3.5rem;
+    width: 5.3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.spacewrite-isperiodic-clicked:hover {
+
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.spacewrite-isperiodic-nonclicked:hover {
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.spacewrite-container-days-date {
+    display: flex;
+    gap: 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 30px;
+    align-items: center;
+}
+
+.spacewrite-days-red {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    background-color: red;
+    color: white;
+    justify-content: center;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.spacewrite-days-white {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid red;
+    color: red;
+    justify-content: center;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.spacewrite-days-white:hover {
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.spacewrite-days-red:hover {
+    cursor: pointer;
+    background-color: rgb(249, 101, 101);
+    border-color: rgb(249, 101, 101);
+    color: white;
+}
+
+.spacewrite-date {
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.spacewrite-save {
+    display: flex;
+    font-size: 1.2rem;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+.spacewrite-time {
+    display: flex;
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    gap: 3px;
+}
+
+.spacewrite-title-input {
+    display: flex;
+    border-radius: 15px;
+    border: 3px solid black;
+    width: 100%;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 600;
+    padding-left: 1.5%;
+    align-items: center;
+}
+
+.spacewrite-title-input:focus {
+    border: 3px solid red;
+    outline: none;
+}
+
+.spacewrite-tags-input {
+    display: flex;
+    border-radius: 15px;
+    border: 3px solid black;
+    width: 20rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 2%;
+    align-items: center;
+}
+
+.spacewrite-tags-input:focus {
+    border: 3px solid red;
+    outline: none;
+}
+
+.spacewrite-tags-button:hover {
+    color: red;
+    outline: none;
+}
+
+.spacewrite-tags-button {
+    display: flex;
+    border-radius: 15px;
+    border: none;
+    background-color: transparent;
+    width: 6rem;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    align-items: center;
+}
+
+.spacewrite-container-tags-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.spacewrite-price-input {
+    display: flex;
+    border-radius: 15px;
+    border: 3px solid black;
+    width: 10rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 5%;
+    align-items: center;
+    margin-bottom: 15px ;
+}
+
+.spacewrite-price-input:focus {
+    border: 3px solid red;
+    outline: none;
+}
+
+.spacewrite-price {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+.spacewrite-container-price-calc {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 15px ;
+}
+.spacewrite-price-calc {
+    display: flex;
+    border-radius: 15px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-left: 10px;
+    align-items: center;
+}
+
+select {
+    width: 100px; /* 원하는 너비설정 */
+    padding: .3em .1em; /* 여백으로 높이 설정 */
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    border: 3px solid gray;
+    outline: none;
+    border-radius: 0px; /* iOS 둥근모서리 제거 */
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* IE 10, 11의 네이티브 화살표 숨기기 */
+select::-ms-expand {
+    display: none;
+}
+
+.spacewrite-time-input {
+    display: flex;
+    align-items: center;
+}

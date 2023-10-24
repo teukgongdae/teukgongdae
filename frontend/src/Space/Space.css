@@ -1,127 +1,156 @@
-.space {
+.spaceinfo-icon-pencil:hover {
+    background-color: gray;
+}
+
+.spaceinfo {
     display: flex;
     margin-top: 10rem;
     justify-content: center;
-    flex-flow: wrap;
-}
-
-.space-card {
-    display: flex;
-    box-sizing: border-box;
     flex-direction: column;
-    justify-content: flex-start;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-top: 3rem;
-    width: 25rem;
-    height: 28rem;
-    border: none;
-    border-radius: 1.5rem;
-    box-shadow: 0px 19px 20px 4px #000000;
-    transition: 800ms;
-    cursor: pointer;
+    width: 90%;
 }
 
-.space-card-image {
+.spaceinfo-container {
     display: flex;
-    box-sizing: border-box;
-    height: 17.5rem;
-    width: inherit;
-    background-color: rgb(220, 220, 220);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
+    width: auto;
+}
+
+.spaceinfo-container-basic {
+    display: flex;
+
+}
+
+.spaceinfo-image {
+    display: flex;
     object-fit: cover;
-}
-
-.space-container-price {
-    display: flex;
     position: absolute;
-    flex-direction: column;
-    box-sizing: border-box;
-    height: 17.5rem;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: inherit;
-    z-index: 50;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
-.space-price {
-    background-color: rgba(125, 125, 125, 0.884);
+.spaceinfo-container-image {
     display: flex;
-    box-sizing: border-box;
-    height: 2rem;
+    position: relative;
+    width: 60%;
+    height: 0;
+    padding-bottom: 40%;
     justify-content: center;
     align-items: center;
-    width: 11rem;
-    position: absolute;
-    padding: 0.8%;
-    font-size: 1.2rem;
+}
+
+.spaceinfo-basic {
+    display: flex;
+    position: relative;
+    width: 40%;
+    height: 0;
+    padding-bottom: 40%;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.spaceinfo-container-explain {
+    display: flex;
+}
+
+.spaceinfo-container-similar {
+    display: flex;
+}
+
+.spaceinfo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     font-weight: 700;
-    color: rgb(255, 255, 255);
+    font-size: 3.5rem;
 }
 
-.space-status-red {
-    position: absolute;
-    padding: 1%;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: red;
-}
-
-.space-status-gray {
-    position: absolute;
-    padding: 1%;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: gray;
-}
-
-.space-card-title {
+.spaceinfo-tags {
     display: flex;
-    box-sizing: border-box;
-    height: 3rem;
-    width: inherit;
-    justify-content: left;
-    align-items: start;
-    font-size: 1.7rem;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 3%;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.spaceinfo-isperiodic {
+    display: flex;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.spaceinfo-price {
+    display: flex;
+    font-size: 1.8rem;
     font-weight: 700;
+    width: 100%;
+    align-items: center;
 }
 
-.space-card-tags {
+.spaceinfo-category {
     display: flex;
-    box-sizing: border-box;
-    height: 2rem;
-    width: inherit;
-    justify-content: left;
-    align-items: start;
-    font-size: 1rem;
-    color: rgb(65, 65, 65);
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 1%;
+    background-color: gray;
+    color: white;
+    border-radius: 15px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.space-card-container-periodic {
+.spaceinfo-address {
+    display: flex;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    color: rgb(56, 56, 56);
+    margin-bottom: 0.5rem;
+}
+
+.spaceinfo-map {
+    border: 5px solid gray;
+    border-radius: 40px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    padding-bottom: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.spaceinfo-icon-pencil {
+    display: flex;
+    border-radius: 10px;
+    padding: 0.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.spaceinfo-card-container-periodic {
     display: flex;
     box-sizing: border-box;
-    height: 2.5rem;
+    height: 3.5rem;
     align-items: center;
     justify-content: start;
     margin-left: 3%;
     margin-right: 3%;
 }
 
-.space-card-periodic {
+.spaceinfo-card-periodic {
     display: flex;
     box-sizing: border-box;
     border: 3px solid red;
     color: red;
     justify-content: center;
     border-radius: 20px;
-    height: 2.5rem;
+    height: 3.5rem;
     width: 4.3rem;
     align-items: center;
     font-size: 1rem;
@@ -131,52 +160,51 @@
     padding-bottom: 1.5%;
 }
 
-.space-card-not-periodic {
+.spaceinfo-card-not-periodic {
     display: flex;
     box-sizing: border-box;
     border: 3px solid red;
     color: red;
     justify-content: center;
     border-radius: 20px;
-    height: 2.5rem;
+    height: 3.5rem;
     width: 4.3rem;
     align-items: center;
     font-size: 1rem;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 1.5%;
-    padding-bottom: 1.5%;
+    padding-bottom: 1.5%
 }
 
-.space-card-container-days {
+.spaceinfo-card-container-days {
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
-    height: 2.5rem;
+    height: 3.5rem;
     justify-content: space-around;
     align-items: center;
     gap: 4px;
-    margin-left: 2%;
 }
 
-.space-card-days-white {
+.spaceinfo-card-days-white {
     display: flex;
     box-sizing: border-box;
     border: 3px solid red;
     color: red;
     justify-content: center;
     border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 1%;
     padding-bottom: 1%;
 }
 
-.space-card-days-red {
+.spaceinfo-card-days-red {
     display: flex;
     box-sizing: border-box;
     border: 3px solid red;
@@ -184,146 +212,83 @@
     color: white;
     justify-content: center;
     border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 1%;
     padding-bottom: 1%;
 }
 
-.space-card-date {
+.spaceinfo-card-date {
     display: flex;
     color: red;
-    justify-content: center;
-    height: 2rem;
+    height: auto;
+    width: max-content;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1.8rem;
     font-weight: 500;
     font-style: italic;
-    padding-left: 2%;
 }
 
-.space-card-container-time-writer {
-    box-sizing: border-box;
+
+
+
+
+.space-container-related {
     display: flex;
-    height: 3rem;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 1.3rem;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-bottom: 3%;
+    justify-content: center;
 }
 
-.space-card-time {
+.space-related-title {
     display: flex;
-    font-style: italic;
+    font-size: 3rem;
     font-weight: 600;
+    justify-content: center;
+    margin-top: 100px;
 }
 
-.space-card-writer {
+.space-body {
+    display: flex;
+    padding-top: 5%;
+    flex-direction: column;
+}
+
+.space-profile {
+    display: flex;
+    gap: 20px;
+}
+
+.space-profile-image {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+.space-profile-name {
     display: flex;
     font-weight: 600;
+    font-size: 3rem;
+    align-items: center;
 }
 
-@media (max-width: 1100px) {   
-    .space{
-        margin-top: 70px;
-    }
-    .space-card {
-        margin-left: 5px;
-        margin-right: 5px;
-        margin-top: 20px;
-        width: 150px;
-        height: 190px;
-        border-radius: 10px;
-        box-shadow: 2px 12px 12px 3px #000000;
-    }
-    .space-card-image {
-        height: 110px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    
-    .space-container-price {
-        height: 110px;
-        z-index: 50;
-    }
-    
-    .space-price {
-        height: 20px;
-        width: 77px;
-        font-size: 7px;
-    }
-    
-    .space-status-red {
-        padding: 2%;
-        font-size: 12px;
-    }
-    
-    .space-status-gray {
-        padding: 2%;
-        font-size: 12px;
-    }
-    
-    .space-card-title {
-        height: 21px;
-        font-size: 14px;
-    }
-    
-    .space-card-tags {
-        height: 14px;
-        font-size: 7px;
-    }
-    
-    .space-card-container-periodic {
-        height: 18px;
-        justify-content: center;
-        margin-top: 5%;
-        margin-bottom: 2%;
-    }
-    
-    .space-card-periodic {
-        display: none;
-    }
-    
-    .space-card-not-periodic {
-        display: none;
-    }
-    
-    .space-card-container-days {
-        height: 17px;
-    }
-    
-    .space-card-days-white {
-        border: 1px solid red;
-        height: 14px;
-        width: 14px;
-        font-size: 6px;
-        padding: 6%;
-    }
-    
-    .space-card-days-red {
-        border: 1px solid red;
-        height: 14px;
-        width: 14px;
-        font-size: 6px;
-        padding: 6%;
-    }
-    
-    .space-card-date {
-        justify-content: start;
-        height: 14px;
-        width: 150px;
-        font-size: 8px;
-        padding-left: 0%;
-    }
-    
-    .space-card-container-time-writer {
-        height: 16px;
-        font-size: 9px;
-    }
+.space-body-text {
+    display: flex;
+    font-size: 1.7rem;
+    padding-top: 2%;
+
+}
+
+.space-address {
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 500;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 1%;
+    padding-top: 3%;
 }

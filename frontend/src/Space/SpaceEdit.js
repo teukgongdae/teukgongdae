@@ -1,69 +1,33 @@
 import "./Space.css";
+import "./SpaceEdit.css";
 import Header from "../UI/Header";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import demoimage1 from "../Assets/space2.jpeg";
-import pencilicon from "../Assets/pencil-icon.png"
-import empty from "../Assets/empty-img-icon.png"
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import imgicon from "../Assets/empty-img-icon.png";
 import NaverMap from "../UI/NaverMap";
-import Date from "../UI/Date";
-import Days from "../UI/Days";
-import FlippedClock from "../UI/FlippedClock";
-import Tags from "../UI/Tags";
-import Card from "../UI/Card";
 import Price from "../UI/Price";
 import Footer from "../UI/Footer";
+import FlippedClock from "../UI/FlippedClock";
+import Date from "../UI/Date";
+import Days from "../UI/Days";
+import Tags from "../UI/Tags";
 
-const Space = () => {
-    var mapDiv = document.getElementById('map'); // 'map'으로 선언해도 동일
-    const navigate = useNavigate();
-
+const SpaceWrite = () => {
     let { spaceid } = useParams();
-    const [time, setTime] = useState('');
-    // const [spaceData, setSpaceData] = useState({});
-    // const [relatedSpaceData, setRelatedSpaceData] = useState([]);
-
-    // useEffect(() => {
-    //     axios
-    //         .get("http://localhost/space/spaces/" + spaceid)
-    //         .then((response) => {
-    //             setSpaceData({
-    //                 title: response.data.title,
-    //                 username: response.data.user_name,
-    //                 tags: response.data.tags,
-    //                 price: response.data.price,
-    //                 date: response.data.date,
-    //                 days: response.data.days,
-    //                 starttime: response.data.start_time,
-    //                 endtime: response.data.end_time,
-    //                 status: response.data.status
-    //             });
-    //             setTime(response.data.start_time + response.data.end_time);
-    //             setRelatedSpaceData(response.data.relatedid);
-    //         })
-    //         .catch((error) => {
-    //         console.log(error);
-    //     })
-
-    // for (let i = 0; i < response.data.relatedid.length; i++) {
-    //      axios
-    //         .get("http://localhost/space/spaces/" + spaceid)
-    //         .then((response) => {
-    //             setRelatedSpaceData(response.data);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
-    // }, [])
-
+    // const [spaceData, setspaceData] = useState({});
+    const [title, setTitle] = useState("");
+    const [tags, setTags] = useState([]);
+    const [isPeriodic, setIsPeriodic] = useState(1);
+    const [endTime, setEndTime] = useState("0000");
+    const [startTime, setStartTime] = useState("0000");
     const [spaceData, setSpaceData] = useState({
         id: 1,
         title: "탐앤탐스",
         user_name: "최고뇩",
         tags: ["카페", "집"],
         price: 1200,
-        date: "0000-00-00",
+        date: "0000/00/00",
         days: "1101001",
         start_time: "1200",
         end_time: "1530",
@@ -72,6 +36,7 @@ const Space = () => {
         address: "서울특별시 종로구 명륜3가 53 성균관대학교",
         specific_address: "학생회관 2층 201호",
         user_image: "image_path",
+        related_3_posts_id: [2, 3],
         body: `모든 국민은 법률이 정하는 바에 의하여 국방의 의무를 진다. 국민경제의 발전을 위한 중요정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다. 모든 국민은 법 앞에 평등하다. 누구든지 성별·종교 또는 사회적 신분에 의하여 정치적·경제적·사회적·문화적 생활의 모든 영역에 있어서 차별을 받지 아니한다. 대통령은 법률이 정하는 바에 의하여 사면·감형 또는 복권을 명할 수 있다. 국가는 농수산물의 수급균형과 유통구조의 개선에 노력하여 가격안정을 도모함으로써 농·어민의 이익을 보호한다. 선거에 있어서 최고득표자가 2인 이상인 때에는 국회의 재적의원 과반수가 출석한 공개회의에서 다수표를 얻은 자를 당선자로 한다.
 
         누구든지 병역의무의 이행으로 인하여 불이익한 처우를 받지 아니한다. 국가는 과학기술의 혁신과 정보 및 인력의 개발을 통하여 국민경제의 발전에 노력하여야 한다. 교육의 자주성·전문성·정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다. 모든 국민은 행위시의 법률에 의하여 범죄를 구성하지 아니하는 행위로 소추되지 아니하며, 동일한 범죄에 대하여 거듭 처벌받지 아니한다. 국회에 제출된 법률안 기타의 의안은 회기중에 의결되지 못한 이유로 폐기되지 아니한다. 다만, 국회의원의 임기가 만료된 때에는 그러하지 아니하다. 타인의 범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다.
@@ -86,44 +51,57 @@ const Space = () => {
         
         대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다. 공공필요에 의한 재산권의 수용·사용 또는 제한 및 그에 대한 보상은 법률로써 하되, 정당한 보상을 지급하여야 한다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 헌법개정은 국회재적의원 과반수 또는 대통령의 발의로 제안된다. 형사피의자 또는 형사피고인으로서 구금되었던 자가 법률이 정하는 불기소처분을 받거나 무죄판결을 받은 때에는 법률이 정하는 바에 의하여 국가에 정당한 보상을 청구할 수 있다.
         
-        대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 대통령이 임시회의 집회를 요구할 때에는 기간과 집회요구의 이유를 명시하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 전직대통령의 신분과 예우에 관하여는 법률로 정한다. 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 비상계엄하의 군사재판은 군인·군무원의 범죄나 군사에 관한 간첩죄의 경우와 초병·초소·유독음식물공급·포로에 관한 죄중 법률이 정한 경우에 한하여 단심으로 할 수 있다. 다만, 사형을 선고한 경우에는 그러하지 아니하다.`,
-        related_3_posts_id: [2, 3]
+        대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 대통령이 임시회의 집회를 요구할 때에는 기간과 집회요구의 이유를 명시하여야 한다. 제2항의 재판관중 3인은 국회에서 선출하는 자를, 3인은 대법원장이 지명하는 자를 임명한다. 전직대통령의 신분과 예우에 관하여는 법률로 정한다. 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 비상계엄하의 군사재판은 군인·군무원의 범죄나 군사에 관한 간첩죄의 경우와 초병·초소·유독음식물공급·포로에 관한 죄중 법률이 정한 경우에 한하여 단심으로 할 수 있다. 다만, 사형을 선고한 경우에는 그러하지 아니하다.`
     }); // TEST
 
-    const [relatedSpaceData, setRelatedSpaceData] = useState([
-        {
-            id: 2,
-            title: "스타벅스 천천점",
-            user_name: "조승현",
-            tags: ["음식점", "카페", "휴식"],
-            price: 24400,
-            date: "2023-11-12",
-            days: "0000000",
-            start_time: "1200",
-            end_time: "1430",
-            status: "대여 마감"
-        },
-        {
-            id: 3,
-            title: "동원고등학교 운동장",
-            user_name: "조승현현",
-            tags: ["학교", "운동장", "공터"],
-            price: 24100,
-            date: "0000-00-00",
-            days: "1001011",
-            start_time: "0900",
-            end_time: "1930",
-            status: "대여 가능"
-        },
-    ]); // TEST
+    const [days, setDays] = useState(spaceData.days);
 
+    // useEffect(() => {
+    //     axios
+    //         .get("http://localhost/golang/spaces/" + spaceid)
+    //         .then((response) => {
+    //             setspaceData({
+    //                 title: response.data.TITLE,
+    //                 username: response.data.USER_NAME,
+    //                 tag1: response.data.TAG1,
+    //                 tag2: response.data.TAG2,
+    //                 tag3: response.data.TAG3,
+    //                 price: response.data.PRICE,
+    //                 isperiodic: response.data.IS_PERIODIC,
+    //                 date: response.data.DATE,
+    //                 days: response.data.DAYS,
+    //                 starttime: response.data.START_TIME,
+    //                 endtime: response.data.END_TIME,
+    //                 status: response.data.STATUS
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }, [])
 
     useEffect(() => {
-        setTime(spaceData.start_time + spaceData.end_time);
+        setTitle(spaceData.title);
+        setTags(spaceData.tags);
+        setStartTime(spaceData.start_time);
+        setEndTime(spaceData.end_time);
     }, [spaceData])
 
-    const modifyHandler = () => {
-        navigate("/space/" + spaceid + "/edit");
+    const titleHandler = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const periodicHandler = (value) => {
+        setIsPeriodic(value);
+    }
+
+    const changeTimeHandler = (start_time, end_time) => {
+        setStartTime(start_time);
+        setEndTime(end_time);
+    }
+
+    const changeDaysHandler = (days) => {
+        setDays(days);
     }
 
     return <div className="page">
@@ -131,52 +109,43 @@ const Space = () => {
         <div className="spaceinfo">
             <div className="spaceinfo-container-basic">
                 <div className="spaceinfo-container-image">
-                    <img src={demoimage1} alt="empty img" className="spaceinfo-image" />
+                    <img src={imgicon} alt="empty img" className="spaceinfo-image" />
                 </div>
                 <div className="spaceinfo-basic">
                     <div className="spaceinfo-title">
-                        {spaceData.title}
-                        <img src={pencilicon} alt="modifyicon" className="spaceinfo-icon-pencil"
-                            onClick={modifyHandler}
-                        />
+                        <input type="text" placeholder="공간 이름" value={title} onChange={titleHandler} className="spacewrite-title-input" />
                     </div>
-                    <Tags tags={spaceData.tags} isModify={false} />
-                    <div className="spaceinfo-category">
-                        음식점/카페
+                    <Tags tags={spaceData.tags} isModify={true} />
+                    <div className="spacewrite-container-isperiodic">
+                        <div className={isPeriodic === 1 ? "spacewrite-isperiodic-clicked" : "spacewrite-isperiodic-nonclicked"} onClick={() => periodicHandler(1)}>
+                            정기
+                        </div>
+                        <div className={isPeriodic === 0 ? "spacewrite-isperiodic-clicked" : "spacewrite-isperiodic-nonclicked"} onClick={() => periodicHandler(0)}>
+                            비정기
+                        </div>
                     </div>
-                    {spaceData.days === "0000000" ? <Date date={spaceData.date} isModify={false} /> : <Days days={spaceData.days} isModify={false} />}
-                    <FlippedClock start_time={spaceData.start_time} end_time={spaceData.end_time} />
-                    <div className="spaceinfo-price">
-                        <Price isModify={false} days={spaceData.days} start_time={spaceData.start_time} end_time={spaceData.end_time} price={spaceData.price} />
-                    </div>
-                    <div className="space-address">
-                        주소 : {spaceData.address} {spaceData.specific_address}
-                    </div>
-                    <NaverMap isModify={false} address={spaceData.address} />
+                    {isPeriodic === 0 ? <Date date={spaceData.date} isModify={true} /> : <Days days={days} isModify={true} onDaysChange={changeDaysHandler}/>}
+                    <FlippedClock start_time={startTime} end_time={endTime} />
+                    <Price isModify={true} days={days} start_time={spaceData.start_time} end_time={spaceData.end_time} price={spaceData.price} onTimeChange={changeTimeHandler} periodic={isPeriodic}/>
+                    {/* <div className="spaceinfo-category">
+                        category
+                    </div> */}
+                    <NaverMap isModify={true} address={spaceData.address} />
                 </div>
             </div>
-            <div className="space-body">
-                <div className="space-profile">
-                    <img src={empty} alt="empty img" className="space-profile-image" />
-                    <div className="space-profile-name">
-                        {spaceData.user_name}
-                    </div>
-                </div>
-                <div className="space-body-text">
-                    {spaceData.body}
-                </div>
+            <div className="spaceinfo-container-explain">
             </div>
-            <div className="space-related-title">
-                {relatedSpaceData.length > 0 ? "- Related Space -" : ""}
+            <div className="spaceinfo-container-similar">
             </div>
-            <div className="space-container-related">
-                {relatedSpaceData.map((item) => (
-                    <Card user_name={item.user_name} days={item.days} date={item.date} start_time={item.start_time} end_time={item.end_time} tags={item.tags} price={item.price} title={item.title} status={item.status} id={item.id} />
-                ))}
-            </div>
+            <input
+                type="button"
+                className="spacewrite-save"
+                value="등록/수정하기"
+            // onClick={addrSearchHandler}
+            />
         </div>
         <Footer />
     </div>
 }
 
-export default Space;
+export default SpaceWrite;
