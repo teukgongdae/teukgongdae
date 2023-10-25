@@ -1,9 +1,11 @@
-.header-icon:hover{
-    background-color: gray;    
+.header-icon:hover {
+    background-color: gray;
 }
-.header-name:hover{
-    background-color: gray;    
+
+.header-name:hover {
+    background-color: gray;
 }
+
 .header-container {
     display: flex;
     position: fixed;
@@ -79,9 +81,11 @@
     .header-container {
         height: 60px;
     }
-    .header{
-        justify-content:center;
+
+    .header {
+        justify-content: center;
     }
+
     .header-container-name {
         width: 60%;
         justify-content: center;
@@ -91,7 +95,7 @@
         justify-content: start;
         font-size: 19px;
     }
-    
+
     .header-name-upper {
         font-size: 19px;
     }
@@ -99,10 +103,12 @@
     .header-category {
         display: none;
     }
+
     .header-container-icon {
         gap: 0px;
         width: 40%;
     }
+
     .header-icon {
         width: 25px;
         height: 25px;

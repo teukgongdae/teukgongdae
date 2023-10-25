@@ -13,6 +13,9 @@ const Header = (props) => {
     const  profileClickHandler = () => {
         navigator("/");
     }
+    const  chatClickHandler = () => {
+        navigator("/chat");
+    }
 
     return (
         <div className="header-container">
@@ -44,7 +47,7 @@ const Header = (props) => {
                 </div>
                 <div className="header-container-icon">
                     <img src={documentsicon} alt="space list" className="header-icon" onClick={spaceClickHandler}/>
-                    <img src={chaticon} alt="chat list" className="header-icon" />
+                    <img src={chaticon} alt="chat list" className="header-icon" onClick={chatClickHandler}/>
                     <img src={profileicon} alt="my profile" className="header-icon" onClick={profileClickHandler}/>
                 </div>
             </div>
