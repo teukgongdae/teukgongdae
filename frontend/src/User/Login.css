@@ -47,6 +47,7 @@
 
 .login-text-info {
     display: flex;
+    width: 100%;
     font-size: 1.3rem;
     color: gray;
 }
@@ -56,6 +57,7 @@
     flex-direction: column;
     align-items: center;
     padding: 2%;
+    width: 100%;
     justify-content: center;
     gap: 20px;
 }

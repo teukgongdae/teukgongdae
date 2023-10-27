@@ -5,28 +5,13 @@ import "./Login.css";
 import logo from "../Assets/logo.png"
 import kakaotalk from "../Assets/kakaotalk-icon.svg"
 import naver from "../Assets/naver-icon.svg"
+import Footer from "../UI/Footer";
 
 const Login = () => {
-
-    const [memid, setMemID] = useState("ID FROM MEMBERDB IS NOT RECIEVED");
-    const [memage, setMemAge] = useState("AGE FROM MEMBERDB IS NOT RECIEVED");
-
-    useEffect(() => {
-        axios.get("http://localhost/member")
-            .then((response) => {
-                setMemID(response.data.id);
-                setMemAge(response.data.age);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }, [])
-
+    
     return (
         <div className="page">
-            <div>
-                <Header category="SIGN IN" />
-            </div>
+            <Header category="SIGN IN" />
             <div className="login">
                 <div className="login-container-logo">
                     <img src={logo} alt="logo" className="login-logo" />
@@ -41,6 +26,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
