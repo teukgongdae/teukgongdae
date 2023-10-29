@@ -4,6 +4,7 @@ import img_user from "../Assets/profile-icon.png"
 import img_star from "../Assets/star-icon.png"
 import { useEffect, useState } from "react";
 import Chat from "./Chat";
+import Footer from "../UI/Footer";
 
 const ChatList = () => {
     const [click, setClick] = useState(0);
@@ -44,6 +45,10 @@ const ChatList = () => {
         },
     ]); // TEST
 
+    useEffect(()=>{
+    
+    },chatListData)
+
     const selectChatHandler = (chatID) => {
         setClick(chatID);
     }
@@ -65,7 +70,8 @@ const ChatList = () => {
                                     {item.peer_user_name}
                                 </div>
                                 <div className="chat-userdata-body">
-                                    {item.most_recent_chat_body}
+                                    {item.most_recent_chat_body.length > 30 ? item.most_recent_chat_body.slice(0,29)+"..." : item.most_recent_chat_body}
+                                    
                                 </div>
                             </div>
                             <div className="chat-container-new">
@@ -83,6 +89,7 @@ const ChatList = () => {
                         ""}
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

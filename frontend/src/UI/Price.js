@@ -174,10 +174,10 @@ const Price = (props) => {
             <div className="spacewrite-price">
                 {price !== 0.0 &&
                     <div className="spacewrite-container-price-calc">
-                        <div className="spacewrite-price-calc">
+                        <div className="price-calc">
                             시간당 대여 비용 : {price}원
                         </div>
-                        <div className="spacewrite-price-calc">
+                        <div className="price-calc">
                             {props.days !== "0000000" && props.periodic === 1 ?
                                 "한 주당 대여비용 : " + String(daysCount * price * times) + "원"
                                 :

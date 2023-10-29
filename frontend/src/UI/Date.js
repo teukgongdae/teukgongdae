@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./Date.css";
+import { useEffect, useState } from "react";
 
 const Date = (props) => {
     const [date, setDate] = useState("YYYY/MM/DD");
@@ -51,4 +51,4 @@ const Date = (props) => {
 export default Date;
 
 // props : date(string), isModify(bool)
-// example : <Date date="2017/10/13" isModify={true}/>
+// example : <Date date="2017/10/13" isModify={true}/

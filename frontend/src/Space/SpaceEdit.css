@@ -17,9 +17,53 @@
     gap: 6px;
 }
 
+.spaceedit-container-basic {
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+
 .spacewrite-delete {
     display: flex;
     color: black;
+}
+
+.spaceedit-image {
+    display: flex;
+    object-fit: fill;
+    border-radius: 20px;
+    width: inherit;
+    height: inherit;
+
+}
+
+.spaceedit-column {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 58%;
+    align-items: center;
+}
+
+.spaceedit-images {
+    display: flex;
+    border: 3px solid gray;
+    width: 180px;
+    height: 120px;
+}
+
+.spaceedit-image-candidate {
+    display: flex;
+    width: 100%;
+    margin-top: 23px;
+    margin-bottom: 23px;
+    justify-content: space-around;
+
+}
+
+.spaceedit-button {
+    display: flex;
+    height: 50px;
 }
 
 .spacewrite-delete:hover {
@@ -27,7 +71,15 @@
     color: red;
 }
 
-
+.spaceedit-container-image {
+    display: flex;
+    /* position: relative; */
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
 .spacewrite-container-tags {
     display: flex;
@@ -162,6 +214,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .spacewrite-time {
     display: flex;
     font-size: 2rem;
@@ -238,7 +291,7 @@
     font-weight: 600;
     padding-left: 5%;
     align-items: center;
-    margin-bottom: 15px ;
+    margin-bottom: 15px;
 }
 
 .spacewrite-price-input:focus {
@@ -252,34 +305,31 @@
     gap: 8px;
 
 }
+
 .spacewrite-container-price-calc {
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: space-between;
     gap: 5px;
-    margin-bottom: 15px ;
-}
-.spacewrite-price-calc {
-    display: flex;
-    border-radius: 15px;
-    width: 100%;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding-left: 10px;
-    align-items: center;
+    margin-bottom: 15px;
 }
 
+
 select {
-    width: 100px; /* 원하는 너비설정 */
-    padding: .3em .1em; /* 여백으로 높이 설정 */
+    width: 100px;
+    /* 원하는 너비설정 */
+    padding: .3em .1em;
+    /* 여백으로 높이 설정 */
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
     border: 3px solid gray;
     outline: none;
-    border-radius: 0px; /* iOS 둥근모서리 제거 */
-    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    border-radius: 0px;
+    /* iOS 둥근모서리 제거 */
+    -webkit-appearance: none;
+    /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
 }
@@ -292,4 +342,16 @@ select::-ms-expand {
 .spacewrite-time-input {
     display: flex;
     align-items: center;
+}
+
+.spaceedit-images:hover {
+    cursor: pointer;
+    border-color: red;
+}
+
+.spaceedit-images-clicked {
+    display: flex;
+    border: 3px solid green;
+    width: 180px;
+    height: 120px;
 }

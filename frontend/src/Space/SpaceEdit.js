@@ -55,6 +55,7 @@ const SpaceWrite = () => {
     }); // TEST
 
     const [days, setDays] = useState(spaceData.days);
+    const [clickedImage, setClickedImage] = useState(0);
 
     // useEffect(() => {
     //     axios
@@ -104,13 +105,38 @@ const SpaceWrite = () => {
         setDays(days);
     }
 
+    const selectImageHandler = (index) => {
+        setClickedImage(index);
+    }
+
     return <div className="page">
         <Header category="SPACE INFO" />
         <div className="spaceinfo">
-            <div className="spaceinfo-container-basic">
-                <div className="spaceinfo-container-image">
-                    <img src={imgicon} alt="empty img" className="spaceinfo-image" />
+            <div className="spaceedit-container-basic">
+                <div className="spaceedit-column">
+                    <div className="spaceedit-container-image">
+                        <img src={imgicon} alt="empty img" className="spaceedit-image" />
+                    </div>
+                    <div className="spaceedit-image-candidate">
+                        <div className={clickedImage === 1 ? "spaceedit-images-clicked" : "spaceedit-images"} onClick={() => selectImageHandler(1)}>
+                        </div>
+                        <div className={clickedImage === 2 ? "spaceedit-images-clicked" : "spaceedit-images"} onClick={() => selectImageHandler(2)}>
+                        </div>
+                        <div className={clickedImage === 3 ? "spaceedit-images-clicked" : "spaceedit-images"} onClick={() => selectImageHandler(3)}>
+                        </div>
+                        <div className={clickedImage === 4 ? "spaceedit-images-clicked" : "spaceedit-images"} onClick={() => selectImageHandler(4)}>
+                        </div>
+                    </div>
+                    <div>
+                        <input
+                            type="button"
+                            className="spaceedit-button"
+                            value="사진 추가하기"
+                        // onClick={addrSearchHandler}
+                        />
+                    </div>
                 </div>
+
                 <div className="spaceinfo-basic">
                     <div className="spaceinfo-title">
                         <input type="text" placeholder="공간 이름" value={title} onChange={titleHandler} className="spacewrite-title-input" />
@@ -124,9 +150,9 @@ const SpaceWrite = () => {
                             비정기
                         </div>
                     </div>
-                    {isPeriodic === 0 ? <Date date={spaceData.date} isModify={true} /> : <Days days={days} isModify={true} onDaysChange={changeDaysHandler}/>}
-                    <FlippedClock start_time={startTime} end_time={endTime} />
-                    <Price isModify={true} days={days} start_time={spaceData.start_time} end_time={spaceData.end_time} price={spaceData.price} onTimeChange={changeTimeHandler} periodic={isPeriodic}/>
+                    {isPeriodic === 0 ? <Date date={spaceData.date} isModify={true} /> : <Days days={days} isModify={true} onDaysChange={changeDaysHandler} />}
+                    <FlippedClock start_time={startTime} end_time={endTime} isModify={false} />
+                    <Price isModify={true} days={days} start_time={spaceData.start_time} end_time={spaceData.end_time} price={spaceData.price} onTimeChange={changeTimeHandler} periodic={isPeriodic} />
                     {/* <div className="spaceinfo-category">
                         category
                     </div> */}

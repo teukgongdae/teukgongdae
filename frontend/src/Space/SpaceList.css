@@ -33,33 +33,6 @@
     object-fit: cover;
 }
 
-.space-container-price {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    box-sizing: border-box;
-    height: 17.5rem;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: inherit;
-    z-index: 50;
-}
-
-.space-price {
-    background-color: rgba(125, 125, 125, 0.884);
-    display: flex;
-    box-sizing: border-box;
-    height: 2rem;
-    justify-content: center;
-    align-items: center;
-    width: 11rem;
-    position: absolute;
-    padding: 0.8%;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-}
-
 .space-status-red {
     position: absolute;
     padding: 1%;

@@ -54,10 +54,10 @@ const Tags = (props) => {
                 </div>
                 :
                 ""}
-            <div className={props.isModify === true ? "tag-tagbox" : "tags-container"}>
+            <div className={props.isModify ? "tag-tagbox" : "tags-container"}>
                 {tags.map((item, index) => (
                     <div className="tags-tag">
-                        #{item} &nbsp;
+                        #{item}
                         {props.isModify === true ?
                             <div className="spacewrite-delete" onClick={() => deleteTagHandler(item)}>
                                 X

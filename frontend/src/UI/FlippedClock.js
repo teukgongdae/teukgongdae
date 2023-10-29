@@ -2,7 +2,7 @@ import "./FlippedClock.css";
 
 const FlippedClock = (props) => {
     return (
-        <div className="flippedClock">
+        <div className={props.isModify ? "flippedClock-small" : "flippedClock" }>
             <div className="flippedClock-time">
                 {props.start_time[0]}
             </div>

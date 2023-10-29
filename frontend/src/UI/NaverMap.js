@@ -82,7 +82,6 @@ const NaverMap = (props) => {
         onClick={addrSearchHandler}
       />
       </div>
-    
         <input type="text" placeholder="세부 주소" value={specificAddr} className='map-specific' onChange={specificAddrHandler} />
           </div>}
           <div className={showList === 0 ? '' : "map-address-list"}>
@@ -92,7 +91,7 @@ const NaverMap = (props) => {
         </div>
       ))}
       </div>
-      <div ref={mapElement} className="spaceinfo-map" />
+      <div ref={mapElement} className="map-map" />
     </div>
   );
 };

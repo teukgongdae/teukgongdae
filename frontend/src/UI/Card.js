@@ -1,4 +1,5 @@
 import "../Space/Space.css";
+import "./Card.css";
 import imgicon1 from "../Assets/space1.jpeg"
 import imgicon2 from "../Assets/space2.jpeg"
 import Days from "./Days";
@@ -27,21 +28,23 @@ const Card = (props) => {
                 <div className={props.status === "대여 가능" ? "space-status-red" : "space-status-gray"}>
                     {props.status}
                 </div>
-                <div className="space-container-price">
-                    <div className="space-price">
+                {props.id === 1 ? <img src={imgicon1} alt="empty img" className="card-image" /> : <img src={imgicon2} alt="empty img" className="card-image" />}
+                <div className="container-price">
+                    <div className="card-price">
                         {props.price}원 / 시간
                     </div>
                 </div>
-                {props.id === 1 ? <img src={imgicon1} alt="empty img" className="space-card-image" /> : <img src={imgicon2} alt="empty img" className="space-card-image" />}
-                <div className="space-card-title">
+                <div className="card-title">
                     {props.title}
                 </div>
-                <Tags tags={props.tags} isModify={false}/>
-                <div className="space-card-container-periodic">
-                    {props.days === "0000000" ? <Date date={props.date} isModify="false" /> : <Days days={props.days} isModify="false" />}
+                <div className="card-tag">
+                    <Tags tags={props.tags} isModify={false}/>
                 </div>
-                <div className="space-card-container-time-writer">
-                    <FlippedClock start_time={props.start_time} end_time={props.end_time} />
+                <div className="card-container-periodic">
+                    {props.days === "0000000" ? <Date date={props.date} isModify={false} /> : <Days days={props.days} isModify={false} />}
+                </div>
+                <div className="card-container-time-writer">
+                    <FlippedClock start_time={props.start_time} end_time={props.end_time} isModify={true}/>
                     <div className="space-card-writer">
                         {props.user_name}
                     </div>

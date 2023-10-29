@@ -1,8 +1,14 @@
 .flippedClock {
     display: flex;
     font-size: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    gap: 3px;
+}
+
+.flippedClock-small {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 600;
     gap: 3px;
 }
 

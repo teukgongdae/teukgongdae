@@ -141,8 +141,10 @@ const Space = () => {
                         />
                     </div>
                     <Tags tags={spaceData.tags} isModify={false} />
-                    <div className="spaceinfo-category">
-                        음식점/카페
+                    <div className="space-container-category">
+                        <div className="spaceinfo-category">
+                            음식점/카페
+                        </div>
                     </div>
                     {spaceData.days === "0000000" ? <Date date={spaceData.date} isModify={false} /> : <Days days={spaceData.days} isModify={false} />}
                     <FlippedClock start_time={spaceData.start_time} end_time={spaceData.end_time} />
@@ -162,8 +164,10 @@ const Space = () => {
                         {spaceData.user_name}
                     </div>
                 </div>
-                <div className="space-body-text">
-                    {spaceData.body}
+                <div className="space-body-container-text">
+                    <div className="space-body-text">
+                        {spaceData.body}
+                    </div>
                 </div>
             </div>
             <div className="space-related-title">
