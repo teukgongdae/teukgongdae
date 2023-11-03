@@ -45,6 +45,9 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.0'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.json:json:20210307'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp:2.7.14'
 }
 
 dependencyManagement {
