@@ -1,4 +1,4 @@
-package com.tgd.member.domain.socket.dto;
+package com.tgd.member.domain.notification.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class NotificationRequestDto {
     private String token;
-    private String title;
-    private String body;
+//    private String title;
+//    private String body;
 
 }
