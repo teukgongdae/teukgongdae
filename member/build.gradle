@@ -47,7 +47,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.json:json:20210307'
-    implementation 'org.springframework.boot:spring-boot-starter-amqp:2.7.14'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'com.google.firebase:firebase-admin:8.2.0'
 
 }
