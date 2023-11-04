@@ -49,7 +49,7 @@ const SpaceList = () => {
     ]); // TEST
 
     return <div className="page">
-        <Header category="SPACE" />
+        <Header category="SPACELIST" />
         <div className="space">
             {spacesInfo.map((item, index) => (
                 <Card user_name={item.user_name} days={item.days} date={item.date} start_time={item.start_time} end_time={item.end_time} tags={item.tags} price={item.price} title={item.title} status={item.status} id={item.id} />

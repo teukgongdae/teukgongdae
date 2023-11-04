@@ -3,6 +3,7 @@ import profileicon from "../Assets/profile-icon.png";
 import chaticon from "../Assets/chat-icon.png";
 import documentsicon from "../Assets/documents-icon.png";
 import { useNavigate } from "react-router-dom";
+import Location from "./Locaction";
 
 const Header = (props) => {
     const navigator = useNavigate();
@@ -21,7 +22,7 @@ const Header = (props) => {
         <div className="header-container">
             <div className="header">
                 <div className="header-category">
-                    {props.category}
+                    {props.category === "SPACELIST" ? <Location/> : props.category}
                 </div>
                 <div className="header-container-name">
                     <div className="header-name">

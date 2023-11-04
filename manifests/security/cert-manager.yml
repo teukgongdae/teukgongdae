@@ -1,0 +1,63 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging-cluster
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: achoistic98@naver.com #change your email
+    privateKeySecretRef:
+      name: letsencrypt-staging-cluster
+    solvers:
+    - http01:
+        ingress:
+          class: istio
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: deanpetrusek-domain-cert-staging
+  namespace: istio-system
+spec:
+  secretName: deanpetrusek-domain-cert-staging
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  isCA: false
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - "local.com"
+  issuerRef:
+    name: letsencrypt-staging-cluster
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gateway-staging
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "local.com"
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: deanpetrusek-domain-cert-staging
+    hosts:
+    - "local.com"

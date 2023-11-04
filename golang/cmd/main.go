@@ -26,9 +26,10 @@ func main() {
 	eg.Use(cors.New(config))
 
 	eg.GET("/golang/spaces", spaceInfoHandler)
+	eg.GET("/golang/spaces/:spaceid", spaceInfoByIDHandler)
 	eg.POST("/golang/hello", returnPostHandler)
 
-	dbb, _ := sql.Open("mysql", "root:5678@tcp(svc-mysql-golang)/spacedb")
+	dbb, _ := sql.Open("mysql", "root:5678@tcp(svc-mysql-space)/spacedb")
 	db = dbb
 	defer db.Close()
 
@@ -101,11 +102,39 @@ func main() {
 	eg.Run(":8080")
 }
 
-func spaceInfoHandler(c *gin.Context) {
+func spaceInfoByIDHandler(c *gin.Context) {
+	spaceid := c.Param("spaceid")
+	println(spaceid)
+	println(spaceid)
+	println(spaceid)
+	println(spaceid)
+	println(spaceid)
+	r, _ := db.Query("SELECT userName, title, tag1, tag2, tag3, price, isPeriodic, date, days, startTime, endTime, status FROM space WHERE id = " + spaceid)
+	defer r.Close()
 
-	// INSERT INTO space (userName, title, tag1, tag2, tag3, price, isPeriodic, days, startTime, endTime) VALUES
-	// ("최윤석", "스타벅스", "카페", "개인공간", "낮에만사용", 1234, 1, 127, 1800, 2400 ),
-	r, err1 := db.Query("SELECT id, userName, title, tag1, tag2, tag3, price, isPeriodic, date, days, startTime, endTime, status FROM space")
+	temp := struct {
+		ID         int    `json:"ID"`
+		USER_NAME  string `json:"user_name"`
+		TITLE      string `json:"title"`
+		TAGS       string `json:"tags"`
+		PRICE      int    `json:"price"`
+		DATE       string `json:"date"`
+		DAYS       int    `json:"days"`
+		START_TIME int    `json:"start_time"`
+		END_TIME   int    `json:"end_time"`
+		STATUS     int    `json:"status"`
+	}{}
+
+	r.Next()
+	r.Scan(&temp.USER_NAME, &temp.TITLE, &temp.TAGS, &temp.PRICE, &temp.DATE, &temp.DAYS, &temp.START_TIME, &temp.END_TIME, &temp.STATUS)
+
+	marshaledData, _ := json.Marshal(temp)
+
+	c.Writer.Write(marshaledData)
+}
+
+func spaceInfoHandler(c *gin.Context) {
+	r, err1 := db.Query("SELECT id, userName, title, tags, price, date, days, starttime, endtime, status FROM space")
 	if err1 != nil {
 		fmt.Println("[GOLANG] SELECTING DB INITIAL DATA ERROR : ", err1)
 	} else {

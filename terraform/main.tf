@@ -9,7 +9,6 @@ resource "aws_vpc" "mainvpc" {
   }
 }
 
-// vpc 안에서 서브넷 집단 하나를 만듦
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.mainvpc.id
   tags = {
@@ -57,14 +56,14 @@ resource "aws_security_group" "cluster_sg" {
 
 resource "aws_lb" "nlb" {
   name               = "tgd-nlb"
-  internal           = false // # 체계 설정 내부로 할지 인터넷경계로 할지
-  load_balancer_type = "network" # for NLB or "application" for ALB
+  internal           = false
+  load_balancer_type = "network"
   
   subnet_mapping {
-    subnet_id = aws_subnet.public_subnet.id  # VPC1의 서브넷 ID
+    subnet_id = aws_subnet.public_subnet.id
   }
 
-  enable_deletion_protection = false # true이면 terraform이 LB 삭제하는 걸 막아줌, 디폴트가 false라 false면 굳이 안써도 되긴 함
+  enable_deletion_protection = false
   
   tags = {
     Environment = "production"
@@ -75,7 +74,7 @@ resource "aws_lb_target_group" "tg" {
   name     = "tgd-tg"
   port     = 80
   protocol = "TCP"
-  target_type = "ip" # 인스턴스면 타켓타입 미표시. 람다, alb면 각각 "lambda", "alb"로 타겟 타입을 선언해줘야함
+  target_type = "ip"
   vpc_id   = aws_vpc.mainvpc.id  
 }
 

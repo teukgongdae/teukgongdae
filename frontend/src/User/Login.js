@@ -1,6 +1,4 @@
 import Header from "../UI/Header";
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import "./Login.css";
 import logo from "../Assets/logo.png"
 import kakaotalk from "../Assets/kakaotalk-icon.svg"
