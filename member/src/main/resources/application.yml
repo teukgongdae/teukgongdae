@@ -1,6 +1,6 @@
 spring:
   config:
-    import: optional:configserver:http://52.78.34.140:8888
+    import: optional:configserver:http://43.202.67.112:8888
   application:
     name: member
   profiles:

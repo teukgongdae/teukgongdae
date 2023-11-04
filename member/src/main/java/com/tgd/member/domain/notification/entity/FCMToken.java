@@ -1,6 +1,5 @@
 package com.tgd.member.domain.notification.entity;
 
-import com.tgd.member.domain.member.entity.Account;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,9 +19,9 @@ public class FCMToken {
     @Column(name = "token")
     private String token;
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    private Account accountId;
+//    @OneToOne
+//    @JoinColumn(name = "member_id")
+//    private Account accountId;
 
 
 }
