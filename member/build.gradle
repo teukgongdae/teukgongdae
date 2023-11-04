@@ -48,6 +48,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.json:json:20210307'
     implementation 'org.springframework.boot:spring-boot-starter-amqp:2.7.14'
+    implementation 'com.google.firebase:firebase-admin:8.2.0'
+
 }
 
 dependencyManagement {
