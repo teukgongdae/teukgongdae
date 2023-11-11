@@ -15,6 +15,7 @@ const Location = () => {
     const [dongCode, setDongCode] = useState([]);
 
     const [mount, setMount] = useState(false);
+    const [mount2, setMount2] = useState(false);
     const [showGoon, setShowGoon] = useState(false);
     const [showDong, setShowDong] = useState(false);
 
@@ -35,19 +36,17 @@ const Location = () => {
 
     const ClickCityHandler = (e) => {
         setSelectCity((e.target.value).slice(0, 2));
-        console.log((e.target.value).slice(0, 2));
     }
 
     useEffect(() => {
         if (mount === false) {
             axios
-                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11*00000&is_ignore_zero=true")
+                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11*0000&is_ignore_zero=true")
                 .then((response) => {
                     response.data.regcodes.map((item) => {
-                        Goontemp.push(item.name.replace(/^[^ ]* /, ''));
+                        Goontemp.push({ name: item.name.replace(/^[^ ]* /, ''), code: item.code });
                     })
                     setGoon(Goontemp);
-                    setGoonCode(GoonCodeTemp);
                 })
                 .catch((error) => {
                     console.log(error.response.data);
@@ -58,11 +57,10 @@ const Location = () => {
                 .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=" + selectCity + "*00000&is_ignore_zero=true")
                 .then((response) => {
                     response.data.regcodes.map((item) => {
-                        Goontemp.push(item.name.replace(/^[^ ]* /, ''));
-                        GoonCodeTemp.push(item.code);
+                        Goontemp.push({ name: item.name.replace(/^[^ ]* /, ''), code: item.code });
                     })
                     setGoon(Goontemp);
-                    setGoonCode(GoonCodeTemp);
+
                 })
                 .catch((error) => {
                     console.log(error.response.data);
@@ -70,20 +68,18 @@ const Location = () => {
         }
     }, [selectCity])
 
-    const ClickGoonHandler = (value) => {
-        // setSelectGoon((e.target.value).slice(0, 4));
-        // console.log((e.target.value).slice(0, 4));
-        console.log(value);
+    const ClickGoonHandler = (e) => {
+        setSelectGoon((e.target.value).slice(0, 5));
     }
 
     useEffect(() => {
         if (mount === false) {
             axios
-                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=1111*&is_ignore_zero=true")
+                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=11110*&is_ignore_zero=true")
                 .then((response) => {
                     console.log(response.data);
                     response.data.regcodes.map((item) => {
-                        Dongtemp.push((item.name.replace(/^[^ ]* /, '')).replace(/^[^ ]* /, ''));
+                        Dongtemp.push({ name: (item.name.replace(/^[^ ]* /, '')).replace(/^[^ ]* /, ''), code: item.code });
                     })
                     setDong(Dongtemp);
                 })
@@ -93,13 +89,13 @@ const Location = () => {
             setMount(true);
         } else {
             axios
-                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=" + selectGoon + "*&is_ignore_zero=true")
+                .get("https://grpc-proxy-server-mkvo6j4wsq-du.a.run.app/v1/regcodes?regcode_pattern=" + selectGoon + "*00&is_ignore_zero=true")
                 .then((response) => {
                     console.log(response.data);
-                    // response.data.regcodes.map((item) => {
-                    //     Dongtemp.push(item.name.replace(/^[^ ]* /, ''));
-                    // })
-                    // setDong(Dongtemp);
+                    response.data.regcodes.map((item) => {
+                        Dongtemp.push({ name: (item.name.replace(/^[^ ]* /, '')).replace(/^[^ ]* /, ''), code: item.code });
+                    })
+                    setDong(Dongtemp);
                 })
                 .catch((error) => {
                     console.log(error.response.data);
@@ -108,8 +104,12 @@ const Location = () => {
     }, [selectGoon])
 
     const ClickDongHandler = (e) => {
-        setSelectDong((e.target.value).slice(0, 7));
+        setSelectDong((e.target.value).slice(0, 6));
     }
+
+    console.log("SELECT CITY: ", selectCity);
+    console.log("SELECT GOON: ", selectGoon);
+    console.log("SELECT DONG: ", selectDong);
 
     return (
         <div className="location">
@@ -118,14 +118,14 @@ const Location = () => {
                     <option value={item.code}>{item.name}</option>
                 ))}
             </select>
-            <select className="location-first">
+            <select className="location-first" onChange={ClickGoonHandler}>
                 {goon.map((item, index) => (
-                    <option value={GoonCodeTemp[index]} onClick={()=>ClickGoonHandler(GoonCodeTemp[index])}>{item}</option>
+                    <option value={item.code}>{item.name}</option>
                 ))}
             </select>
             <select className="location-first" onChange={ClickDongHandler}>
                 {dong.map((item) => (
-                    <option value={item.code}>{item}</option>
+                    <option value={item.code}>{item.name}</option>
                 ))}
             </select>
         </div>

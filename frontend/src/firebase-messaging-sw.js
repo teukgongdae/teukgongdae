@@ -1,8 +1,9 @@
 // firebase-messaging-sw.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import axios from "axios";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCArs_mR2Gzf1rO8XHih0OzICrlJjRecGI",
@@ -14,7 +15,24 @@ const firebaseConfig = {
   measurementId: "G-9SJHCDTJNV"
 };
 
+function SendToken(value) {
+
+  const token = ({
+    token: value,
+  });
+
+  axios
+    .post(process.env.REACT_APP_HOST + "/member/send-notification", token)
+    .then((response) => {
+      console.log("푸시 준비 완료");
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    })
+}
 function requestPermission() {
+
+
   console.log('푸시 허가 받는 중 ...')
 
   void Notification.requestPermission().then((permission) => {
@@ -28,10 +46,11 @@ function requestPermission() {
   const app = initializeApp(firebaseConfig)
   const messaging = getMessaging(app)
 
-  getToken(messaging, { vapidKey: 'BLcHsK6oZa8IOHES5hapiUeYGiI0eg1vSW60C3hYBgcr0LdbAesgS5Pai9dcZpxuRAS8AA3rvE5s3gtDpwwfaiw' }).then((currentToken) => {
+  getToken(messaging, { vapidKey: 'BHU9_uveOY9NbUkfyYG2rOHLBiVmXTaca_vE4g8TpXAlWkN-OcTqE_8tmpRFPfN6sGTR4nMWdCpigb5PE5qkKdI' }).then((currentToken) => {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
-      console.log("토큰 성공 : ", currentToken);
+      console.log(currentToken);
+      SendToken(currentToken);
     } else {
       // Show permission request UI
       console.log('토큰 획득을 위한 알람 허용이 꺼져있습니다.');
@@ -39,5 +58,11 @@ function requestPermission() {
   }).catch((err) => {
     console.log('오류 발생', err);
   });
+
+  onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload);
+    // ...
+  });
+
 }
 requestPermission()

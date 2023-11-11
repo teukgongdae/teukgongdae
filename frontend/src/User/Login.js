@@ -4,9 +4,11 @@ import logo from "../Assets/logo.png"
 import kakaotalk from "../Assets/kakaotalk-icon.svg"
 import naver from "../Assets/naver-icon.svg"
 import Footer from "../UI/Footer";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 const Login = () => {
-    
+
+
     return (
         <div className="page">
             <Header category="SIGN IN" />
