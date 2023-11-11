@@ -1,10 +1,10 @@
 package com.tgd.member.domain.notification.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Builder
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class NotificationRequestDto {

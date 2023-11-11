@@ -13,7 +13,7 @@ public class NotificationController {
 
     private final NotificationService notificationService;
 
-    @PostMapping("/send-notification")
+    @PostMapping("/member/send-notification")
     public String sendNotification(@RequestBody NotificationRequestDto notificationRequest) {
 
 //        return notificationService.sendNotification(notificationRequest.getToken(), notificationRequest.getTitle(), notificationRequest.getBody());
